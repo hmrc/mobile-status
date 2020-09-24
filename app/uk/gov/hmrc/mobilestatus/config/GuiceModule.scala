@@ -34,11 +34,7 @@ class GuiceModule(
     bind(classOf[CoreGet]).to(classOf[WSHttpImpl])
     bind(classOf[HttpClient]).to(classOf[WSHttpImpl])
 
-    bindConfigBoolean("feature.userPanelSignUp")
-    bindConfigBoolean("feature.enablePushNotificationTokenRegistration")
-    bindConfigBoolean("feature.helpToSave.enableBadge")
-    bindConfigBoolean("feature.paperlessAlertDialogues")
-    bindConfigBoolean("feature.paperlessAdverts")
+    bindConfigBoolean("feature.componentisedAccessCodes")
   }
 
   private def bindConfigBoolean(path: String): Unit =

@@ -16,34 +16,48 @@
 
 package uk.gov.hmrc.mobilestatus.controllers
 
-import org.scalatest.{Matchers, WordSpecLike}
-import org.scalatestplus.mockito.MockitoSugar
-import org.scalatestplus.play.guice.GuiceOneAppPerSuite
-import play.api.{Configuration, Environment}
-import play.api.http.Status
+import com.typesafe.config.ConfigException
 import play.api.test.Helpers._
-import play.api.test.{FakeRequest, Helpers}
 import eu.timepit.refined.auto._
+import org.mockito.Mockito.when
+import play.api.http.Status
+import play.api.libs.json.Json
+import play.api.test.{FakeRequest, Helpers}
+import uk.gov.hmrc.mobilestatus.BaseSpec
+import uk.gov.hmrc.mobilestatus.domain.{FeatureFlag, StatusResponse}
 import uk.gov.hmrc.mobilestatus.domain.types.ModelTypes.JourneyId
 import uk.gov.hmrc.mobilestatus.service.StatusService
+
 import scala.concurrent.ExecutionContext.Implicits.global
 
-class MobileStatusControllerSpec extends WordSpecLike with Matchers with GuiceOneAppPerSuite with MockitoSugar {
+class MobileStatusControllerSpec
+    extends BaseSpec {
 
   private val fakeRequest = FakeRequest("GET", "/")
 
-  private val env           = Environment.simple()
-  private val configuration = Configuration.load(env)
-
-  val service: StatusService = mock[StatusService]
-  val journeyId: JourneyId = "252a1a16-831b-46bd-bf51-4e55d4d1c088"
+  val service:   StatusService = mock[StatusService]
+  val journeyId: JourneyId     = "252a1a16-831b-46bd-bf51-4e55d4d1c088"
 
   private val controller = new LiveMobileStatusController(Helpers.stubControllerComponents(), service)
 
-  "GET /" should {
-    "return 200" in {
-      val result = controller.getAppStatus(journeyId)
+  private val featureFlagList: List[FeatureFlag] = List(FeatureFlag("flag1", enabled = true),
+                                                        FeatureFlag("flag2", enabled = true),
+                                                        FeatureFlag("flag3", enabled = false))
+
+
+
+  "GET /status" should {
+    "return 200 with valid correct response" in {
+      when(service.buildStatusResponse()).thenReturn(StatusResponse(featureFlagList))
+      val result = controller.status(journeyId)(fakeRequest)
       status(result) shouldBe Status.OK
+      contentAsJson(result).toString().contains(Json.toJson(featureFlagList).toString()) shouldBe true
+    }
+
+    "return 500 when exception is thrown" in {
+      when(service.buildStatusResponse()).thenThrow(new RuntimeException)
+      val result = controller.status(journeyId)(fakeRequest)
+      status(result) shouldBe Status.INTERNAL_SERVER_ERROR
     }
   }
 }
