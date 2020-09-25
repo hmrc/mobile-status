@@ -18,7 +18,7 @@ package uk.gov.hmrc.mobilestatus.domain
 
 import play.api.libs.json.{Format, Json}
 
-case class StatusResponse(features: List[FeatureFlag])
+case class StatusResponse(feature: List[FeatureFlag])
 
 object StatusResponse {
   implicit val formats: Format[StatusResponse] = Json.format[StatusResponse]

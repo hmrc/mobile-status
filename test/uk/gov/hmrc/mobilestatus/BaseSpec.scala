@@ -14,15 +14,17 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.mobilestatus.service
+package uk.gov.hmrc.mobilestatus
 
-import com.google.inject.name.Named
-import javax.inject.Inject
-import uk.gov.hmrc.mobilestatus.domain.{FeatureFlag, StatusResponse}
+import org.scalatest.{Matchers, OptionValues, WordSpecLike}
+import org.scalatestplus.mockito.MockitoSugar
+import play.api.test.{DefaultAwaitTimeout, FutureAwaits}
 
-class StatusService @Inject() (@Named("feature.componentisedAccessCodes") componentisedAccessCodes: Boolean) {
+trait BaseSpec extends WordSpecLike
+  with Matchers
+  with MockitoSugar
+  with FutureAwaits
+  with DefaultAwaitTimeout
+  with OptionValues {
 
-  def buildStatusResponse(): StatusResponse = StatusResponse(featureFlags)
-
-  private val featureFlags: List[FeatureFlag] = List(FeatureFlag("componentisedAccessCodes", componentisedAccessCodes))
 }

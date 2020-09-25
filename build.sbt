@@ -54,9 +54,10 @@ lazy val microservice = Project(appName, file("."))
   .settings(resolvers += Resolver.jcenterRepo)
 
 // Coverage configuration
-coverageMinimum := 95
+coverageMinimum := 89
 coverageFailOnMinimum := true
-coverageExcludedPackages := "<empty>;com.kenshoo.play.metrics.*;.*definition.*;prod.*;app.*;uk.gov.hmrc.BuildInfo;.*Reverse.*;.*Routes.*"
+coverageHighlighting := true
+coverageExcludedPackages := "<empty>;com.kenshoo.play.metrics.*;.*definition.*;prod.*;testOnlyDoNotUseInAppConf.*;app.*;.*BuildInfo.*;.*Routes.*;.*javascript.*;.*Reverse.*;.*WSHttpImpl.*"
 
 def oneForkedJvmPerTest(tests: Seq[TestDefinition]) =
   tests map { test =>

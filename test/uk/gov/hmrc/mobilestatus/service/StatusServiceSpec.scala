@@ -16,13 +16,20 @@
 
 package uk.gov.hmrc.mobilestatus.service
 
-import com.google.inject.name.Named
-import javax.inject.Inject
+import uk.gov.hmrc.mobilestatus.BaseSpec
 import uk.gov.hmrc.mobilestatus.domain.{FeatureFlag, StatusResponse}
 
-class StatusService @Inject() (@Named("feature.componentisedAccessCodes") componentisedAccessCodes: Boolean) {
+class StatusServiceSpec extends BaseSpec {
 
-  def buildStatusResponse(): StatusResponse = StatusResponse(featureFlags)
+  val service = new StatusService(componentisedAccessCodes = false)
 
-  private val featureFlags: List[FeatureFlag] = List(FeatureFlag("componentisedAccessCodes", componentisedAccessCodes))
+  val expectedFeatureFlags = List(FeatureFlag("componentisedAccessCodes", enabled = false))
+
+  "build response" should {
+    "return valid status response object" in {
+      val response = service.buildStatusResponse()
+      response shouldBe StatusResponse(expectedFeatureFlags)
+    }
+  }
+
 }

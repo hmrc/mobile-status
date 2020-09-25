@@ -1,8 +1,16 @@
+# mobile-shuttering
 
-# mobile-status
+## Endpoints
 
-This is a placeholder README.md for a new repository
-
-### License
-
-This code is open source software licensed under the [Apache 2.0 License]("http://www.apache.org/licenses/LICENSE-2.0.html").
+### GET /status
+Responds with status of mobile services and features
+```json
+{
+  "feature": [ {
+    "name": "componentisedAccessCodes",
+    "enabled": false
+  } ]
+}
+```
+#### Response
+- 200 - Ok

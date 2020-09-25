@@ -16,15 +16,20 @@
 
 package uk.gov.hmrc.mobilestatus.controllers
 
+import java.time.format.DateTimeParseException
+
+import com.typesafe.config.ConfigException
 import javax.inject.{Inject, Singleton}
+import play.api.Logger
 import play.api.libs.json.Json
 import play.api.mvc._
-import uk.gov.hmrc.api.controllers.HeaderValidator
+import uk.gov.hmrc.api.controllers.{ErrorInternalServerError, HeaderValidator}
 import uk.gov.hmrc.mobilestatus.domain.types.ModelTypes.JourneyId
 import uk.gov.hmrc.mobilestatus.service.StatusService
 import uk.gov.hmrc.play.bootstrap.controller.BackendController
 
-import scala.concurrent.ExecutionContext
+import scala.concurrent.{ExecutionContext, Future}
+import scala.util.{Failure, Success, Try}
 
 @Singleton
 class LiveMobileStatusController @Inject() (
@@ -36,7 +41,19 @@ class LiveMobileStatusController @Inject() (
 
   override def parser: BodyParser[AnyContent] = cc.parsers.anyContent
 
-  def status(journeyId: JourneyId): Action[AnyContent] = Action { implicit request =>
-    Ok(Json.toJson(statusService.buildStatusResponse()))
+  def status(journeyId: JourneyId): Action[AnyContent] = Action.async { implicit request =>
+    Try(statusService.buildStatusResponse()) match {
+      case Success(result) => Future successful Ok(Json.toJson(result))
+
+      case Failure(e) =>
+        Logger.warn(
+          s"Native Error - Mobile Status Controller Internal server error: ${e.getMessage}",
+          e
+        )
+        Future.successful(
+          InternalServerError(Json.toJson(ErrorInternalServerError))
+        )
+
+    }
   }
 }
