@@ -16,9 +16,6 @@
 
 package uk.gov.hmrc.mobilestatus.controllers
 
-import java.time.format.DateTimeParseException
-
-import com.typesafe.config.ConfigException
 import javax.inject.{Inject, Singleton}
 import play.api.Logger
 import play.api.libs.json.Json
@@ -26,7 +23,7 @@ import play.api.mvc._
 import uk.gov.hmrc.api.controllers.{ErrorInternalServerError, HeaderValidator}
 import uk.gov.hmrc.mobilestatus.domain.types.ModelTypes.JourneyId
 import uk.gov.hmrc.mobilestatus.service.StatusService
-import uk.gov.hmrc.play.bootstrap.controller.BackendController
+import uk.gov.hmrc.play.bootstrap.backend.controller.BackendController
 
 import scala.concurrent.{ExecutionContext, Future}
 import scala.util.{Failure, Success, Try}
