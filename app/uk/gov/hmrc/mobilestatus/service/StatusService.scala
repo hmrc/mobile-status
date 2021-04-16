@@ -1,5 +1,5 @@
 /*
- * Copyright 2020 HM Revenue & Customs
+ * Copyright 2021 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,12 +17,20 @@
 package uk.gov.hmrc.mobilestatus.service
 
 import com.google.inject.name.Named
+
 import javax.inject.Inject
-import uk.gov.hmrc.mobilestatus.domain.{FeatureFlag, StatusResponse}
+import uk.gov.hmrc.mobilestatus.domain.{FeatureFlag, FullScreenInfoMessage, StatusResponse}
+import uk.gov.hmrc.mobilestatus.config.FullScreenMessageConfigJson
 
-class StatusService @Inject() (@Named("feature.componentisedAccessCodes") componentisedAccessCodes: Boolean) {
-
-  def buildStatusResponse(): StatusResponse = StatusResponse(featureFlags)
+class StatusService @Inject() (
+  @Named("feature.componentisedAccessCodes") componentisedAccessCodes: Boolean,
+  fullScreenMessageConfigJson:                                         FullScreenMessageConfigJson) {
 
   private val featureFlags: List[FeatureFlag] = List(FeatureFlag("componentisedAccessCodes", componentisedAccessCodes))
+
+  def buildStatusResponse(): StatusResponse = {
+    val fullScreenMessage: Option[FullScreenInfoMessage] = fullScreenMessageConfigJson.readMessageConfigJson
+    StatusResponse(featureFlags, fullScreenMessage)
+  }
+
 }

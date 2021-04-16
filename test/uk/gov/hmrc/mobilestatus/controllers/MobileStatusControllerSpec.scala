@@ -1,5 +1,5 @@
 /*
- * Copyright 2020 HM Revenue & Customs
+ * Copyright 2021 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,7 +16,6 @@
 
 package uk.gov.hmrc.mobilestatus.controllers
 
-import com.typesafe.config.ConfigException
 import play.api.test.Helpers._
 import eu.timepit.refined.auto._
 import org.mockito.Mockito.when
@@ -28,10 +27,7 @@ import uk.gov.hmrc.mobilestatus.domain.{FeatureFlag, StatusResponse}
 import uk.gov.hmrc.mobilestatus.domain.types.ModelTypes.JourneyId
 import uk.gov.hmrc.mobilestatus.service.StatusService
 
-import scala.concurrent.ExecutionContext.Implicits.global
-
-class MobileStatusControllerSpec
-    extends BaseSpec {
+class MobileStatusControllerSpec extends BaseSpec {
 
   private val fakeRequest = FakeRequest("GET", "/")
 
@@ -44,14 +40,13 @@ class MobileStatusControllerSpec
                                                         FeatureFlag("flag2", enabled = true),
                                                         FeatureFlag("flag3", enabled = false))
 
-
-
   "GET /status" should {
     "return 200 with valid correct response" in {
-      when(service.buildStatusResponse()).thenReturn(StatusResponse(featureFlagList))
+      when(service.buildStatusResponse()).thenReturn(StatusResponse(featureFlagList, Some(fullScreenMessage)))
       val result = controller.status(journeyId)(fakeRequest)
-      status(result) shouldBe Status.OK
-      contentAsJson(result).toString().contains(Json.toJson(featureFlagList).toString()) shouldBe true
+      status(result)                                                                       shouldBe Status.OK
+      contentAsJson(result).toString().contains(Json.toJson(featureFlagList).toString())   shouldBe true
+      contentAsJson(result).toString().contains(Json.toJson(fullScreenMessage).toString()) shouldBe true
     }
 
     "return 500 when exception is thrown" in {
