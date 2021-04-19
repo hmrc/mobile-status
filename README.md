@@ -1,4 +1,4 @@
-# mobile-shuttering
+# mobile-status
 
 ## Endpoints
 
