@@ -1,5 +1,5 @@
 /*
- * Copyright 2020 HM Revenue & Customs
+ * Copyright 2021 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,7 +18,7 @@ package uk.gov.hmrc.mobilestatus.domain
 
 import play.api.libs.json.{Format, Json}
 
-case class StatusResponse(feature: List[FeatureFlag])
+case class StatusResponse(feature: List[FeatureFlag], fullScreenInfoMessage: Option[FullScreenInfoMessage] = None)
 
 object StatusResponse {
   implicit val formats: Format[StatusResponse] = Json.format[StatusResponse]

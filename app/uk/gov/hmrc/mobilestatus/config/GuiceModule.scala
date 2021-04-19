@@ -1,5 +1,5 @@
 /*
- * Copyright 2020 HM Revenue & Customs
+ * Copyright 2021 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -34,6 +34,7 @@ class GuiceModule(
     bind(classOf[HttpClient]).to(classOf[WSHttpImpl])
 
     bindConfigBoolean("feature.componentisedAccessCodes")
+    bindConfigBoolean("shuttering.appShuttered")
   }
 
   private def bindConfigBoolean(path: String): Unit =

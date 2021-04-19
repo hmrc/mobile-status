@@ -1,5 +1,5 @@
 /*
- * Copyright 2020 HM Revenue & Customs
+ * Copyright 2021 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,15 +16,28 @@
 
 package uk.gov.hmrc.mobilestatus
 
+import akka.stream.Materializer
 import org.scalatest.{Matchers, OptionValues, WordSpecLike}
 import org.scalatestplus.mockito.MockitoSugar
-import play.api.test.{DefaultAwaitTimeout, FutureAwaits}
+import org.scalatestplus.play.guice.GuiceOneAppPerSuite
+import play.api.test.{DefaultAwaitTimeout, FakeRequest, FutureAwaits}
+import uk.gov.hmrc.mobilestatus.config.AppConfig
+import uk.gov.hmrc.mobilestatus.domain.{Content, FullScreenInfoMessage}
 
 trait BaseSpec extends WordSpecLike
   with Matchers
   with MockitoSugar
   with FutureAwaits
   with DefaultAwaitTimeout
-  with OptionValues {
+  with OptionValues
+  with GuiceOneAppPerSuite {
+
+  val appInjector               = app.injector
+  implicit val materializer     = appInjector.instanceOf[Materializer]
+  implicit val executionContext = scala.concurrent.ExecutionContext.Implicits.global
+
+  implicit def appConfig: AppConfig = appInjector.instanceOf[AppConfig]
+
+  val fullScreenMessage = FullScreenInfoMessage(id = "id", `type` = "type", content = Content("title"))
 
 }
