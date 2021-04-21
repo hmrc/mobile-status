@@ -34,6 +34,7 @@ class GuiceModule(
     bind(classOf[HttpClient]).to(classOf[WSHttpImpl])
 
     bindConfigBoolean("feature.componentisedAccessCodes")
+    bindConfigBoolean("shuttering.appShuttered")
   }
 
   private def bindConfigBoolean(path: String): Unit =

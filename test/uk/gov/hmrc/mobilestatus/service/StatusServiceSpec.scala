@@ -16,19 +16,35 @@
 
 package uk.gov.hmrc.mobilestatus.service
 
+import org.mockito.Mockito.when
+import play.api.Application
+import play.api.inject.guice.GuiceApplicationBuilder
 import uk.gov.hmrc.mobilestatus.BaseSpec
-import uk.gov.hmrc.mobilestatus.domain.{FeatureFlag, StatusResponse}
+import uk.gov.hmrc.mobilestatus.config.FullScreenMessageConfigJson
+import uk.gov.hmrc.mobilestatus.domain.{Content, FeatureFlag, FullScreenInfoMessage, StatusResponse}
 
 class StatusServiceSpec extends BaseSpec {
+  override implicit lazy val app: Application = GuiceApplicationBuilder()
+    .configure("nameOfConfigFile" -> "full_screen_message_config_for_test")
+    .build()
 
-  val service = new StatusService(componentisedAccessCodes = false)
+  val mockFullScreenMessageConfig = mock[FullScreenMessageConfigJson]
+
+  val service = new StatusService(componentisedAccessCodes = false, mockFullScreenMessageConfig)
 
   val expectedFeatureFlags = List(FeatureFlag("componentisedAccessCodes", enabled = false))
 
   "build response" should {
     "return valid status response object" in {
+      when(mockFullScreenMessageConfig.readMessageConfigJson).thenReturn(None)
       val response = service.buildStatusResponse()
       response shouldBe StatusResponse(expectedFeatureFlags)
+    }
+
+    "return valid status response object with full screen info message" in {
+      when(mockFullScreenMessageConfig.readMessageConfigJson).thenReturn(Some(fullScreenMessage))
+      val response = service.buildStatusResponse()
+      response shouldBe StatusResponse(expectedFeatureFlags, Some(fullScreenMessage))
     }
   }
 
