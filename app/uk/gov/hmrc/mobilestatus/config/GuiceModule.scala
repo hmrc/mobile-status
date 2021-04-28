@@ -33,7 +33,7 @@ class GuiceModule(
     bind(classOf[CoreGet]).to(classOf[WSHttpImpl])
     bind(classOf[HttpClient]).to(classOf[WSHttpImpl])
 
-    bindConfigBoolean("feature.componentisedAccessCodes")
+    bindConfigBoolean("feature.showAccessibilityStatementButton")
     bindConfigBoolean("shuttering.appShuttered")
   }
 

@@ -9,7 +9,7 @@ class LiveMobileStatusControllerISpec extends BaseISpec {
 
   val expectedJsonResponse: String = """{
   "feature" : [ {
-    "name" : "componentisedAccessCodes",
+    "name" : "showAccessibilityStatementButton",
     "enabled" : false
   } ],
   "fullScreenInfoMessage" : {
@@ -62,7 +62,7 @@ class MobileStatusInvalidFileNameFullScreenMessageISpec extends BaseISpec {
 
   val expectedJsonResponse: String           = """{
   "feature" : [ {
-    "name" : "componentisedAccessCodes",
+    "name" : "showAccessibilityStatementButton",
     "enabled" : false
   } ]
 }""".stripMargin
@@ -82,7 +82,7 @@ class MobileStatusAppShutteredFullScreenMessageISpec extends BaseISpec {
 
   val expectedJsonResponse: String = """{
   "feature" : [ {
-    "name" : "componentisedAccessCodes",
+    "name" : "showAccessibilityStatementButton",
     "enabled" : false
   } ],
   "fullScreenInfoMessage" : {

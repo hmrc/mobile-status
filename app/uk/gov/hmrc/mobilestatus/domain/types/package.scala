@@ -17,7 +17,7 @@
 package uk.gov.hmrc.mobilestatus.domain
 
 import eu.timepit.refined.api.{RefType, Validate}
-import play.api.mvc.{PathBindable, QueryStringBindable}
+import play.api.mvc.QueryStringBindable
 
 package object types {
 

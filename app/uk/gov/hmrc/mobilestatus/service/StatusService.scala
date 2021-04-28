@@ -23,10 +23,10 @@ import uk.gov.hmrc.mobilestatus.domain.{FeatureFlag, FullScreenInfoMessage, Stat
 import uk.gov.hmrc.mobilestatus.config.FullScreenMessageConfigJson
 
 class StatusService @Inject() (
-  @Named("feature.componentisedAccessCodes") componentisedAccessCodes: Boolean,
+  @Named("feature.showAccessibilityStatementButton") showAccessibilityStatementButton: Boolean,
   fullScreenMessageConfigJson:                                         FullScreenMessageConfigJson) {
 
-  private val featureFlags: List[FeatureFlag] = List(FeatureFlag("componentisedAccessCodes", componentisedAccessCodes))
+  private val featureFlags: List[FeatureFlag] = List(FeatureFlag("showAccessibilityStatementButton", showAccessibilityStatementButton))
 
   def buildStatusResponse(): StatusResponse = {
     val fullScreenMessage: Option[FullScreenInfoMessage] = fullScreenMessageConfigJson.readMessageConfigJson
