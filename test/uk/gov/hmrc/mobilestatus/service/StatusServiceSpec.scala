@@ -21,7 +21,7 @@ import play.api.Application
 import play.api.inject.guice.GuiceApplicationBuilder
 import uk.gov.hmrc.mobilestatus.BaseSpec
 import uk.gov.hmrc.mobilestatus.config.FullScreenMessageConfigJson
-import uk.gov.hmrc.mobilestatus.domain.{Content, FeatureFlag, FullScreenInfoMessage, StatusResponse}
+import uk.gov.hmrc.mobilestatus.domain.{FeatureFlag, StatusResponse}
 
 class StatusServiceSpec extends BaseSpec {
   override implicit lazy val app: Application = GuiceApplicationBuilder()
@@ -30,9 +30,9 @@ class StatusServiceSpec extends BaseSpec {
 
   val mockFullScreenMessageConfig = mock[FullScreenMessageConfigJson]
 
-  val service = new StatusService(componentisedAccessCodes = false, mockFullScreenMessageConfig)
+  val service = new StatusService(showAccessibilityStatementButton = false, mockFullScreenMessageConfig)
 
-  val expectedFeatureFlags = List(FeatureFlag("componentisedAccessCodes", enabled = false))
+  val expectedFeatureFlags = List(FeatureFlag("showAccessibilityStatementButton", enabled = false))
 
   "build response" should {
     "return valid status response object" in {
