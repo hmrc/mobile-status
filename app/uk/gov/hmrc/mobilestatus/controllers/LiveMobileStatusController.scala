@@ -36,6 +36,8 @@ class LiveMobileStatusController @Inject() (
     extends BackendController(cc)
     with HeaderValidator {
 
+  val logger: Logger = Logger(this.getClass)
+
   override def parser: BodyParser[AnyContent] = cc.parsers.anyContent
 
   def status(journeyId: JourneyId): Action[AnyContent] = Action.async { implicit request =>
@@ -43,7 +45,7 @@ class LiveMobileStatusController @Inject() (
       case Success(result) => Future successful Ok(Json.toJson(result))
 
       case Failure(e) =>
-        Logger.warn(
+        logger.warn(
           s"Native Error - Mobile Status Controller Internal server error: ${e.getMessage}",
           e
         )
