@@ -1,7 +1,6 @@
 import play.sbt.PlayImport.PlayKeys.playDefaultPort
 import sbt.Keys.testGrouping
 import sbt.Tests.{Group, SubProcess}
-import uk.gov.hmrc.SbtArtifactory
 import uk.gov.hmrc.sbtdistributables.SbtDistributablesPlugin.publishingSettings
 
 val appName = "mobile-status"
@@ -10,9 +9,7 @@ lazy val microservice = Project(appName, file("."))
   .enablePlugins(
     play.sbt.PlayScala,
     SbtAutoBuildPlugin,
-    SbtGitVersioning,
-    SbtDistributablesPlugin,
-    SbtArtifactory
+    SbtDistributablesPlugin
   )
   .configs(IntegrationTest)
   .settings(inConfig(IntegrationTest)(Defaults.itSettings): _*)
