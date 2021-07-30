@@ -8,10 +8,7 @@ class LiveMobileStatusControllerISpec extends BaseISpec {
   override def config:      Map[String, Any] = super.config ++ Map[String, Any]("nameOfConfigFile" -> "full_screen_message_config_for_test")
 
   val expectedJsonResponse: String = """{
-  "feature" : [ {
-    "name" : "showAccessibilityStatementButton",
-    "enabled" : false
-  } ],
+  "feature" : [ ],
   "fullScreenInfoMessage" : {
     "id" : "496dde52-4912-4af2-8b3c-33c6f8afedf9",
     "type" : "Info",
@@ -38,7 +35,7 @@ class LiveMobileStatusControllerISpec extends BaseISpec {
       val response = await(wsUrl("/mobile-status/status?journeyId=7f1b5289-5f4d-4150-93a3-ff02dda28375").get)
       println(Json.prettyPrint(response.json))
       response.status                                        shouldBe 200
-      (response.json \ "feature").as[List[FeatureFlag]].size shouldBe 1
+      (response.json \ "feature").as[List[FeatureFlag]].size shouldBe 0
       Json.prettyPrint(response.json)                        shouldBe (expectedJsonResponse)
     }
 
@@ -61,10 +58,7 @@ class LiveMobileStatusControllerISpec extends BaseISpec {
 class MobileStatusInvalidFileNameFullScreenMessageISpec extends BaseISpec {
 
   val expectedJsonResponse: String           = """{
-  "feature" : [ {
-    "name" : "showAccessibilityStatementButton",
-    "enabled" : false
-  } ]
+  "feature" : [ ]
 }""".stripMargin
   override def config:      Map[String, Any] = super.config ++ Map[String, Any]("nameOfConfigFile" -> "INVALID_NAME")
 
@@ -72,7 +66,7 @@ class MobileStatusInvalidFileNameFullScreenMessageISpec extends BaseISpec {
     "return valid response without a fullScreenInfoMessage" in {
       val response = await(wsUrl("/mobile-status/status?journeyId=7f1b5289-5f4d-4150-93a3-ff02dda28375").get)
       response.status                                        shouldBe 200
-      (response.json \ "feature").as[List[FeatureFlag]].size shouldBe 1
+      (response.json \ "feature").as[List[FeatureFlag]].size shouldBe 0
       Json.prettyPrint(response.json)                        shouldBe (expectedJsonResponse)
     }
   }
@@ -81,10 +75,7 @@ class MobileStatusInvalidFileNameFullScreenMessageISpec extends BaseISpec {
 class MobileStatusAppShutteredFullScreenMessageISpec extends BaseISpec {
 
   val expectedJsonResponse: String = """{
-  "feature" : [ {
-    "name" : "showAccessibilityStatementButton",
-    "enabled" : false
-  } ],
+  "feature" : [ ],
   "fullScreenInfoMessage" : {
     "id" : "496dde52-4912-4af2-8b3c-33c6f8afedf9",
     "type" : "Info",
@@ -103,7 +94,7 @@ class MobileStatusAppShutteredFullScreenMessageISpec extends BaseISpec {
     "return valid response without a fullScreenInfoMessage" in {
       val response = await(wsUrl("/mobile-status/status?journeyId=7f1b5289-5f4d-4150-93a3-ff02dda28375").get)
       response.status                                                            shouldBe 200
-      (response.json \ "feature").as[List[FeatureFlag]].size                     shouldBe 1
+      (response.json \ "feature").as[List[FeatureFlag]].size                     shouldBe 0
       (response.json \ "fullScreenInfoMessage" \ "type").as[String]              shouldBe "Shutter"
       (response.json \ "fullScreenInfoMessage" \ "content" \ "title").as[String] shouldBe "App Unavailable"
       (response.json \ "fullScreenInfoMessage" \ "content" \ "body").as[String]  shouldBe "Please try again later."
