@@ -28,11 +28,11 @@ class StatusServiceSpec extends BaseSpec {
     .configure("nameOfConfigFile" -> "full_screen_message_config_for_test")
     .build()
 
-  val mockFullScreenMessageConfig = mock[FullScreenMessageConfigJson]
+  val mockFullScreenMessageConfig: FullScreenMessageConfigJson = mock[FullScreenMessageConfigJson]
 
-  val service = new StatusService(showAccessibilityStatementButton = false, mockFullScreenMessageConfig)
+  val service = new StatusService(mockFullScreenMessageConfig)
 
-  val expectedFeatureFlags = List(FeatureFlag("showAccessibilityStatementButton", enabled = false))
+  val expectedFeatureFlags = List.empty
 
   "build response" should {
     "return valid status response object" in {

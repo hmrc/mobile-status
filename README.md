@@ -10,7 +10,7 @@ Responds with status of mobile services/features and an optional full screen inf
 {
   "feature": [
     {
-      "name": "showAccessibilityStatementButton",
+      "name": "featureFlag1",
       "enabled": false
     }
   ],

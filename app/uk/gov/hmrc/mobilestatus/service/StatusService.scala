@@ -16,17 +16,14 @@
 
 package uk.gov.hmrc.mobilestatus.service
 
-import com.google.inject.name.Named
-
 import javax.inject.Inject
 import uk.gov.hmrc.mobilestatus.domain.{FeatureFlag, FullScreenInfoMessage, StatusResponse}
 import uk.gov.hmrc.mobilestatus.config.FullScreenMessageConfigJson
 
 class StatusService @Inject() (
-  @Named("feature.showAccessibilityStatementButton") showAccessibilityStatementButton: Boolean,
   fullScreenMessageConfigJson:                                         FullScreenMessageConfigJson) {
 
-  private val featureFlags: List[FeatureFlag] = List(FeatureFlag("showAccessibilityStatementButton", showAccessibilityStatementButton))
+  private val featureFlags: List[FeatureFlag] = List.empty
 
   def buildStatusResponse(): StatusResponse = {
     val fullScreenMessage: Option[FullScreenInfoMessage] = fullScreenMessageConfigJson.readMessageConfigJson
