@@ -17,7 +17,7 @@
 package uk.gov.hmrc.mobilestatus.config
 
 import com.google.inject.name.Named
-import play.api.Logger.logger
+import play.api.Logger
 import play.api.libs.json.Json
 import uk.gov.hmrc.mobilestatus.domain.FullScreenInfoMessage
 
@@ -29,6 +29,8 @@ import javax.inject.{Inject, Singleton}
 class FullScreenMessageConfigJson @Inject() (
   appConfig:                                      AppConfig,
   @Named("shuttering.appShuttered") appShuttered: Boolean) {
+
+  val logger: Logger = Logger(this.getClass)
 
   def readMessageConfigJson: Option[FullScreenInfoMessage] =
     if (appShuttered) Some(FullScreenInfoMessage.shutterApp(appConfig.shutterTitle, appConfig.shutterBody))
