@@ -3,18 +3,20 @@ import sbt._
 
 object AppDependencies {
 
-  private val play26Bootstrap    = "5.1.0"
-  private val playHmrcApiVersion = "6.2.0-play-27"
+  private val play28Bootstrap    = "5.16.0"
+  private val playHmrcApiVersion = "6.4.0-play-28"
 
   private val pegdownVersion       = "1.6.0"
   private val wireMockVersion      = "2.27.2"
-  private val scalaTestVersion     = "3.0.8"
-  private val scalaTestPlusVersion = "4.0.3"
-  private val mockitoVersion       = "3.6.28"
-  private val refinedVersion       = "0.9.19"
+  private val scalaTestVersion     = "3.2.9"
+  private val scalaTestPlusVersion = "5.1.0"
+  private val mockitoVersion       = "1.16.46"
+  private val refinedVersion       = "0.9.26"
+  private val scalaMockVersion     = "5.1.0"
+  private val flexmarkAllVersion   = "0.36.8"
 
   val compile = Seq(
-    "uk.gov.hmrc" %% "bootstrap-backend-play-27" % play26Bootstrap,
+    "uk.gov.hmrc" %% "bootstrap-backend-play-28" % play28Bootstrap,
     "uk.gov.hmrc" %% "play-hmrc-api"             % playHmrcApiVersion,
     "eu.timepit"  %% "refined"                   % refinedVersion
   )
@@ -23,9 +25,10 @@ object AppDependencies {
     "org.scalatest"          %% "scalatest"          % scalaTestVersion     % "test, it",
     "com.typesafe.play"      %% "play-test"          % current              % "test",
     "org.pegdown"            % "pegdown"             % pegdownVersion       % "test, it",
-    "org.mockito"            % "mockito-core"        % mockitoVersion       % "test,it",
     "com.github.tomakehurst" % "wiremock"            % wireMockVersion      % "it",
-    "org.scalatestplus.play" %% "scalatestplus-play" % scalaTestPlusVersion % "test, it"
+    "org.scalatestplus.play" %% "scalatestplus-play" % scalaTestPlusVersion % "test, it",
+    "org.mockito"            %% "mockito-scala"      % mockitoVersion       % "test",
+    "com.vladsch.flexmark"   % "flexmark-all"        % flexmarkAllVersion   % "test"
   )
 
 }

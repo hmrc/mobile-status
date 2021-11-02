@@ -17,14 +17,16 @@
 package uk.gov.hmrc.mobilestatus
 
 import akka.stream.Materializer
-import org.scalatest.{Matchers, OptionValues, WordSpecLike}
-import org.scalatestplus.mockito.MockitoSugar
+import org.mockito.MockitoSugar
+import org.scalatest.matchers.should.Matchers
+import org.scalatest.wordspec.AnyWordSpecLike
+import org.scalatest.OptionValues
 import org.scalatestplus.play.guice.GuiceOneAppPerSuite
 import play.api.test.{DefaultAwaitTimeout, FakeRequest, FutureAwaits}
 import uk.gov.hmrc.mobilestatus.config.AppConfig
 import uk.gov.hmrc.mobilestatus.domain.{Content, FullScreenInfoMessage}
 
-trait BaseSpec extends WordSpecLike
+trait BaseSpec extends AnyWordSpecLike
   with Matchers
   with MockitoSugar
   with FutureAwaits
