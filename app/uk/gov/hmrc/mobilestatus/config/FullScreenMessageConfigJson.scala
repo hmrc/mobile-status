@@ -44,7 +44,7 @@ class FullScreenMessageConfigJson @Inject() (
   def findResource(path: String): Option[String] = {
     val resource = getClass.getResourceAsStream(path)
     if (resource == null) {
-      logger.warn(s"Could not find resource '$path'")
+      logger.info(s"Could not find resource '$path'")
       None
     } else {
       Some(readStreamToString(resource))
