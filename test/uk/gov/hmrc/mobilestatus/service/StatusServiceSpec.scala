@@ -1,5 +1,5 @@
 /*
- * Copyright 2021 HM Revenue & Customs
+ * Copyright 2022 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -21,30 +21,38 @@ import play.api.Application
 import play.api.inject.guice.GuiceApplicationBuilder
 import uk.gov.hmrc.mobilestatus.BaseSpec
 import uk.gov.hmrc.mobilestatus.config.FullScreenMessageConfigJson
-import uk.gov.hmrc.mobilestatus.domain.{FeatureFlag, StatusResponse}
+import uk.gov.hmrc.mobilestatus.domain.{FeatureFlag, StatusResponse, Urls}
 
 class StatusServiceSpec extends BaseSpec {
+
   override implicit lazy val app: Application = GuiceApplicationBuilder()
     .configure("nameOfConfigFile" -> "full_screen_message_config_for_test")
+    .configure(
+      "url.manageGovGatewayIdUrl" -> "http://localhost:8264/mobile-manage-government-gateway-id-frontend/sign-in"
+    )
     .build()
 
   val mockFullScreenMessageConfig: FullScreenMessageConfigJson = mock[FullScreenMessageConfigJson]
 
-  val service = new StatusService(mockFullScreenMessageConfig)
+  val service = new StatusService("http://localhost:8264/mobile-manage-government-gateway-id-frontend/sign-in",
+                                  mockFullScreenMessageConfig)
 
   val expectedFeatureFlags = List.empty
+
+  val expectedUrls =
+    Urls("http://localhost:8264/mobile-manage-government-gateway-id-frontend/sign-in")
 
   "build response" should {
     "return valid status response object" in {
       when(mockFullScreenMessageConfig.readMessageConfigJson).thenReturn(None)
       val response = service.buildStatusResponse()
-      response shouldBe StatusResponse(expectedFeatureFlags)
+      response shouldBe StatusResponse(expectedFeatureFlags, expectedUrls)
     }
 
     "return valid status response object with full screen info message" in {
       when(mockFullScreenMessageConfig.readMessageConfigJson).thenReturn(Some(fullScreenMessage))
       val response = service.buildStatusResponse()
-      response shouldBe StatusResponse(expectedFeatureFlags, Some(fullScreenMessage))
+      response shouldBe StatusResponse(expectedFeatureFlags, expectedUrls, Some(fullScreenMessage))
     }
   }
 

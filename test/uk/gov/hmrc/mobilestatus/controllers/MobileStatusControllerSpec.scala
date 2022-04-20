@@ -1,5 +1,5 @@
 /*
- * Copyright 2021 HM Revenue & Customs
+ * Copyright 2022 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,12 +18,11 @@ package uk.gov.hmrc.mobilestatus.controllers
 
 import play.api.test.Helpers._
 import eu.timepit.refined.auto._
-import org.mockito.Mockito.when
 import play.api.http.Status
 import play.api.libs.json.Json
 import play.api.test.{FakeRequest, Helpers}
 import uk.gov.hmrc.mobilestatus.BaseSpec
-import uk.gov.hmrc.mobilestatus.domain.{FeatureFlag, StatusResponse}
+import uk.gov.hmrc.mobilestatus.domain.{FeatureFlag, StatusResponse, Urls}
 import uk.gov.hmrc.mobilestatus.domain.types.ModelTypes.JourneyId
 import uk.gov.hmrc.mobilestatus.service.StatusService
 
@@ -40,12 +39,15 @@ class MobileStatusControllerSpec extends BaseSpec {
                                                         FeatureFlag("flag2", enabled = true),
                                                         FeatureFlag("flag3", enabled = false))
 
+  private val urls: Urls = Urls("https://url1.com")
+
   "GET /status" should {
     "return 200 with valid correct response" in {
-      when(service.buildStatusResponse()).thenReturn(StatusResponse(featureFlagList, Some(fullScreenMessage)))
+      when(service.buildStatusResponse()).thenReturn(StatusResponse(featureFlagList, urls, Some(fullScreenMessage)))
       val result = controller.status(journeyId)(fakeRequest)
       status(result)                                                                       shouldBe Status.OK
       contentAsJson(result).toString().contains(Json.toJson(featureFlagList).toString())   shouldBe true
+      contentAsJson(result).toString().contains(Json.toJson(urls).toString())              shouldBe true
       contentAsJson(result).toString().contains(Json.toJson(fullScreenMessage).toString()) shouldBe true
     }
 

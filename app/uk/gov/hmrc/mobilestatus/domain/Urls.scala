@@ -18,11 +18,8 @@ package uk.gov.hmrc.mobilestatus.domain
 
 import play.api.libs.json.{Format, Json}
 
-case class StatusResponse(
-  feature:               List[FeatureFlag],
-  urls:                  Urls,
-  fullScreenInfoMessage: Option[FullScreenInfoMessage] = None)
+case class Urls(manageGovGatewayIdUrl: String)
 
-object StatusResponse {
-  implicit val formats: Format[StatusResponse] = Json.format[StatusResponse]
+object Urls {
+  implicit val formats: Format[Urls] = Json.format[Urls]
 }
