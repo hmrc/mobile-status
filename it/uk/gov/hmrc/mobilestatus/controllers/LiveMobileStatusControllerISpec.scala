@@ -1,14 +1,16 @@
 package uk.gov.hmrc.mobilestatus.controllers
 
 import play.api.libs.json.Json
-import uk.gov.hmrc.mobilestatus.domain.FeatureFlag
+import uk.gov.hmrc.mobilestatus.domain.{FeatureFlag, Urls}
 import uk.gov.hmrc.mobilestatus.support.BaseISpec
 
 class LiveMobileStatusControllerISpec extends BaseISpec {
-  override def config:      Map[String, Any] = super.config ++ Map[String, Any]("nameOfConfigFile" -> "full_screen_message_config_for_test")
 
   val expectedJsonResponse: String = """{
   "feature" : [ ],
+  "urls" : {
+    "manageGovGatewayIdUrl" : "www.url1.gov.uk"
+  },
   "fullScreenInfoMessage" : {
     "id" : "496dde52-4912-4af2-8b3c-33c6f8afedf9",
     "type" : "Info",
@@ -29,14 +31,18 @@ class LiveMobileStatusControllerISpec extends BaseISpec {
   }
 }""".stripMargin
 
+  override def config: Map[String, Any] =
+    super.config ++ Map[String, Any]("nameOfConfigFile" -> "full_screen_message_config_for_test")
+
   "GET /status" should {
     "return valid response based on config" in {
 
       val response = await(wsUrl("/mobile-status/status?journeyId=7f1b5289-5f4d-4150-93a3-ff02dda28375").get)
       println(Json.prettyPrint(response.json))
-      response.status                                        shouldBe 200
-      (response.json \ "feature").as[List[FeatureFlag]].size shouldBe 0
-      Json.prettyPrint(response.json)                        shouldBe (expectedJsonResponse)
+      response.status                                         shouldBe 200
+      (response.json \ "feature").as[List[FeatureFlag]].size  shouldBe 0
+      (response.json \ "urls").as[Urls].manageGovGatewayIdUrl shouldBe "www.url1.gov.uk"
+      Json.prettyPrint(response.json)                         shouldBe (expectedJsonResponse)
     }
 
     "return 400 if no journeyId supplied" in {
@@ -58,7 +64,10 @@ class LiveMobileStatusControllerISpec extends BaseISpec {
 class MobileStatusInvalidFileNameFullScreenMessageISpec extends BaseISpec {
 
   val expectedJsonResponse: String           = """{
-  "feature" : [ ]
+  "feature" : [ ],
+  "urls" : {
+    "manageGovGatewayIdUrl" : "www.url1.gov.uk"
+  }
 }""".stripMargin
   override def config:      Map[String, Any] = super.config ++ Map[String, Any]("nameOfConfigFile" -> "INVALID_NAME")
 
@@ -76,6 +85,9 @@ class MobileStatusAppShutteredFullScreenMessageISpec extends BaseISpec {
 
   val expectedJsonResponse: String = """{
   "feature" : [ ],
+  "urls" : {
+    "manageGovGatewayIdUrl" : "www.url1.gov.uk"
+  },
   "fullScreenInfoMessage" : {
     "id" : "496dde52-4912-4af2-8b3c-33c6f8afedf9",
     "type" : "Info",

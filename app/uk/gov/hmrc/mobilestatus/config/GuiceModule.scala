@@ -1,5 +1,5 @@
 /*
- * Copyright 2021 HM Revenue & Customs
+ * Copyright 2022 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -33,9 +33,13 @@ class GuiceModule(
     bind(classOf[CoreGet]).to(classOf[WSHttpImpl])
     bind(classOf[HttpClient]).to(classOf[WSHttpImpl])
 
+    bindConfigString("url.manageGovGatewayIdUrl")
     bindConfigBoolean("shuttering.appShuttered")
   }
 
   private def bindConfigBoolean(path: String): Unit =
     bindConstant().annotatedWith(named(path)).to(configuration.underlying.getBoolean(path))
+
+  private def bindConfigString(path: String): Unit =
+    bindConstant().annotatedWith(named(path)).to(configuration.underlying.getString(path))
 }

@@ -30,7 +30,8 @@ class BaseISpec
       "microservice.services.auth.port"       -> wireMockPort,
       "microservice.services.datastream.port" -> wireMockPort,
       "auditing.consumer.baseUri.port"        -> wireMockPort,
-      "feature.componentisedAccessCodes"      -> false
+      "feature.componentisedAccessCodes"      -> false,
+      "url.manageGovGatewayIdUrl"             -> "www.url1.gov.uk"
     )
 
   protected def appBuilder: GuiceApplicationBuilder = new GuiceApplicationBuilder().configure(config)
