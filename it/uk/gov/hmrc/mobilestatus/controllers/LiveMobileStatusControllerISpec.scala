@@ -9,7 +9,11 @@ class LiveMobileStatusControllerISpec extends BaseISpec {
   val expectedJsonResponse: String = """{
   "feature" : [ ],
   "urls" : {
-    "manageGovGatewayIdUrl" : "www.url1.gov.uk"
+    "manageGovGatewayIdUrl" : "www.url1.gov.uk",
+    "cbProofOfEntitlementUrl" : "www.url2.gov.uk",
+    "cbProofOfEntitlementUrlCy" : "www.url3.gov.uk",
+    "cbPaymentHistoryUrl" : "www.url4.gov.uk",
+    "cbPaymentHistoryUrlCy" : "www.url5.gov.uk"
   },
   "fullScreenInfoMessage" : {
     "id" : "496dde52-4912-4af2-8b3c-33c6f8afedf9",
@@ -39,10 +43,14 @@ class LiveMobileStatusControllerISpec extends BaseISpec {
 
       val response = await(wsUrl("/mobile-status/status?journeyId=7f1b5289-5f4d-4150-93a3-ff02dda28375").get)
       println(Json.prettyPrint(response.json))
-      response.status                                         shouldBe 200
-      (response.json \ "feature").as[List[FeatureFlag]].size  shouldBe 0
-      (response.json \ "urls").as[Urls].manageGovGatewayIdUrl shouldBe "www.url1.gov.uk"
-      Json.prettyPrint(response.json)                         shouldBe (expectedJsonResponse)
+      response.status                                             shouldBe 200
+      (response.json \ "feature").as[List[FeatureFlag]].size      shouldBe 0
+      (response.json \ "urls").as[Urls].manageGovGatewayIdUrl     shouldBe "www.url1.gov.uk"
+      (response.json \ "urls").as[Urls].cbProofOfEntitlementUrl   shouldBe "www.url2.gov.uk"
+      (response.json \ "urls").as[Urls].cbProofOfEntitlementUrlCy shouldBe "www.url3.gov.uk"
+      (response.json \ "urls").as[Urls].cbPaymentHistoryUrl       shouldBe "www.url4.gov.uk"
+      (response.json \ "urls").as[Urls].cbPaymentHistoryUrlCy     shouldBe "www.url5.gov.uk"
+      Json.prettyPrint(response.json)                             shouldBe (expectedJsonResponse)
     }
 
     "return 400 if no journeyId supplied" in {
@@ -66,7 +74,11 @@ class MobileStatusInvalidFileNameFullScreenMessageISpec extends BaseISpec {
   val expectedJsonResponse: String           = """{
   "feature" : [ ],
   "urls" : {
-    "manageGovGatewayIdUrl" : "www.url1.gov.uk"
+    "manageGovGatewayIdUrl" : "www.url1.gov.uk",
+    "cbProofOfEntitlementUrl" : "www.url2.gov.uk",
+    "cbProofOfEntitlementUrlCy" : "www.url3.gov.uk",
+    "cbPaymentHistoryUrl" : "www.url4.gov.uk",
+    "cbPaymentHistoryUrlCy" : "www.url5.gov.uk"
   }
 }""".stripMargin
   override def config:      Map[String, Any] = super.config ++ Map[String, Any]("nameOfConfigFile" -> "INVALID_NAME")
