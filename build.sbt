@@ -15,7 +15,7 @@ lazy val microservice = Project(appName, file("."))
   .settings(inConfig(IntegrationTest)(Defaults.itSettings): _*)
   .settings(
     majorVersion := 0,
-    scalaVersion := "2.12.15",
+    scalaVersion := "2.13.8",
     playDefaultPort := 8260,
     libraryDependencies ++= AppDependencies.compile ++ AppDependencies.test,
     dependencyOverrides ++= overrides,
@@ -32,15 +32,8 @@ lazy val microservice = Project(appName, file("."))
       "-language:higherKinds",
       "-language:postfixOps",
       "-feature",
-      "-Ypartial-unification",
-      "-Ywarn-dead-code",
-      "-Ywarn-value-discard",
-      "-Ywarn-inaccessible",
-      "-Ywarn-infer-any",
-      "-Ywarn-nullary-override",
-      "-Ywarn-nullary-unit",
-      "-Ywarn-numeric-widen",
-      "-Xlint"
+      "-Xlint",
+      "-Wconf:src=routes/.*:s"
     )
   )
   .settings(publishingSettings: _*)
@@ -51,7 +44,7 @@ lazy val microservice = Project(appName, file("."))
   .settings(resolvers += Resolver.jcenterRepo)
 
 // Coverage configuration
-coverageMinimum := 80
+coverageMinimumStmtTotal := 80
 coverageFailOnMinimum := true
 coverageHighlighting := true
 coverageExcludedPackages := "<empty>;com.kenshoo.play.metrics.*;.*definition.*;prod.*;testOnlyDoNotUseInAppConf.*;app.*;.*BuildInfo.*;.*Routes.*;.*javascript.*;.*Reverse.*;.*WSHttpImpl.*"

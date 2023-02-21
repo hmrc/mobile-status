@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 HM Revenue & Customs
+ * Copyright 2023 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -39,7 +39,8 @@ class MobileStatusControllerSpec extends BaseSpec {
                                                         FeatureFlag("flag2", enabled = true),
                                                         FeatureFlag("flag3", enabled = false))
 
-  private val urls: Urls = Urls("https://url1.com")
+  private val urls: Urls =
+    Urls("https://url1.com", "https://url2.com", "https://url3.com", "https://url4.com", "https://url5.com")
 
   "GET /status" should {
     "return 200 with valid correct response" in {

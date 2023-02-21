@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 HM Revenue & Customs
+ * Copyright 2023 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -21,11 +21,17 @@ import uk.gov.hmrc.mobilestatus.domain.{FeatureFlag, FullScreenInfoMessage, Stat
 import uk.gov.hmrc.mobilestatus.config.FullScreenMessageConfigJson
 
 class StatusService @Inject() (
-  @Named("url.manageGovGatewayIdUrl") manageGovGatewayIdUrl: String,
-  fullScreenMessageConfigJson:                               FullScreenMessageConfigJson) {
+  @Named("url.manageGovGatewayIdUrl") manageGovGatewayIdUrl:       String,
+  @Named("url.cbProofOfEntitlementUrl") proofOfEntitlementUrl:     String,
+  @Named("url.cbProofOfEntitlementUrlCy") proofOfEntitlementUrlCy: String,
+  @Named("url.cbPaymentHistoryUrl") paymentHistoryUrl:             String,
+  @Named("url.cbPaymentHistoryUrlCy") paymentHistoryUrlCy:         String,
+  fullScreenMessageConfigJson:                                     FullScreenMessageConfigJson) {
 
   private val featureFlags: List[FeatureFlag] = List.empty
-  private val urls:         Urls              = Urls(manageGovGatewayIdUrl)
+
+  private val urls: Urls =
+    Urls(manageGovGatewayIdUrl, proofOfEntitlementUrl, proofOfEntitlementUrlCy, paymentHistoryUrl, paymentHistoryUrlCy)
 
   def buildStatusResponse(): StatusResponse = {
     val fullScreenMessage: Option[FullScreenInfoMessage] = fullScreenMessageConfigJson.readMessageConfigJson

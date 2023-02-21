@@ -26,12 +26,17 @@ class BaseISpec
 
   def config: Map[String, Any] =
     Map(
-      "auditing.enabled"                      -> true,
+      "auditing.enabled"                      -> false,
+      "metrics.enabled"                       -> false,
       "microservice.services.auth.port"       -> wireMockPort,
       "microservice.services.datastream.port" -> wireMockPort,
       "auditing.consumer.baseUri.port"        -> wireMockPort,
       "feature.componentisedAccessCodes"      -> false,
-      "url.manageGovGatewayIdUrl"             -> "www.url1.gov.uk"
+      "url.manageGovGatewayIdUrl"             -> "www.url1.gov.uk",
+      "url.cbProofOfEntitlementUrl"           -> "www.url2.gov.uk",
+      "url.cbProofOfEntitlementUrlCy"         -> "www.url3.gov.uk",
+      "url.cbPaymentHistoryUrl"               -> "www.url4.gov.uk",
+      "url.cbPaymentHistoryUrlCy"             -> "www.url5.gov.uk"
     )
 
   protected def appBuilder: GuiceApplicationBuilder = new GuiceApplicationBuilder().configure(config)
