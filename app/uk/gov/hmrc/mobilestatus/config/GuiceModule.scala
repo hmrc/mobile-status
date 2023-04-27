@@ -34,10 +34,6 @@ class GuiceModule(
     bind(classOf[HttpClient]).to(classOf[WSHttpImpl])
 
     bindConfigString("url.manageGovGatewayIdUrl")
-    bindConfigString("url.cbProofOfEntitlementUrl")
-    bindConfigString("url.cbProofOfEntitlementUrlCy")
-    bindConfigString("url.cbPaymentHistoryUrl")
-    bindConfigString("url.cbPaymentHistoryUrlCy")
     bindConfigBoolean("shuttering.appShuttered")
   }
 
