@@ -19,11 +19,7 @@ package uk.gov.hmrc.mobilestatus.domain
 import play.api.libs.json.{Format, Json}
 
 case class Urls(
-  manageGovGatewayIdUrl:     String,
-  cbProofOfEntitlementUrl:   String,
-  cbProofOfEntitlementUrlCy: String,
-  cbPaymentHistoryUrl:       String,
-  cbPaymentHistoryUrlCy:     String)
+  manageGovGatewayIdUrl:     String)
 
 object Urls {
   implicit val formats: Format[Urls] = Json.format[Urls]
