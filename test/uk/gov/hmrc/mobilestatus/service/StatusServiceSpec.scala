@@ -34,12 +34,34 @@ class StatusServiceSpec extends BaseSpec {
 
   val mockFullScreenMessageConfig: FullScreenMessageConfigJson = mock[FullScreenMessageConfigJson]
 
-  val service = new StatusService("http://localhost:8264/mobile-manage-government-gateway-id-frontend/sign-in",
-                                  mockFullScreenMessageConfig)
+  val service = new StatusService(mockFullScreenMessageConfig,"http://localhost:8264/mobile-manage-government-gateway-id-frontend/sign-in",
+    userPanelSignUp = false,
+    enablePushNotificationTokenRegistration = false,
+    paperlessAlertDialogs = false,
+    paperlessAdverts = false,
+    htsAdverts = false,
+    customerSatisfactionSurveys = false,
+    findMyNinoAddToWallet = false,
+    disableYourEmploymentIncomeChart = true,
+    disableYourEmploymentIncomeChartAndroid = true,
+    disableYourEmploymentIncomeChartIos = true,
+    findMyNinoAddToGoogleWallet = false)
 
-  val expectedFeatureFlags = List.empty
+  val expectedFeatureFlags: List[FeatureFlag] = List(
+    FeatureFlag("userPanelSignUp", enabled = false),
+    FeatureFlag("enablePushNotificationTokenRegistration", enabled = false),
+    FeatureFlag("paperlessAlertDialogs", enabled = false),
+    FeatureFlag("paperlessAdverts", enabled = false),
+    FeatureFlag("htsAdverts", enabled = false),
+    FeatureFlag("customerSatisfactionSurveys", enabled = false),
+    FeatureFlag("findMyNinoAddToWallet", enabled = false),
+    FeatureFlag("disableYourEmploymentIncomeChart", enabled = true),
+    FeatureFlag("disableYourEmploymentIncomeChartAndroid", enabled = true),
+    FeatureFlag("disableYourEmploymentIncomeChartIos", enabled = true),
+    FeatureFlag("findMyNinoAddToGoogleWallet", enabled = false)
+  )
 
-  val expectedUrls =
+  val expectedUrls: Urls =
     Urls(
       "http://localhost:8264/mobile-manage-government-gateway-id-frontend/sign-in"
     )

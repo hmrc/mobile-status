@@ -21,10 +21,33 @@ import uk.gov.hmrc.mobilestatus.domain.{FeatureFlag, FullScreenInfoMessage, Stat
 import uk.gov.hmrc.mobilestatus.config.FullScreenMessageConfigJson
 
 class StatusService @Inject() (
-  @Named("url.manageGovGatewayIdUrl") manageGovGatewayIdUrl:       String,
-  fullScreenMessageConfigJson:                                     FullScreenMessageConfigJson) {
+  fullScreenMessageConfigJson:                                                             FullScreenMessageConfigJson,
+  @Named("url.manageGovGatewayIdUrl") manageGovGatewayIdUrl:                                                  String,
+  @Named("feature.userPanelSignUp")                                userPanelSignUp:                          Boolean,
+  @Named("feature.enablePushNotificationTokenRegistration")         enablePushNotificationTokenRegistration:   Boolean,
+  @Named("feature.paperlessAlertDialogs")                          paperlessAlertDialogs:                    Boolean,
+  @Named("feature.paperlessAdverts")                               paperlessAdverts:                         Boolean,
+  @Named("feature.htsAdverts")                                     htsAdverts:                               Boolean,
+  @Named("feature.customerSatisfactionSurveys")                    customerSatisfactionSurveys:              Boolean,
+  @Named("feature.findMyNinoAddToWallet")                           findMyNinoAddToWallet:                     Boolean,
+  @Named("feature.disableYourEmploymentIncomeChart")               disableYourEmploymentIncomeChart:         Boolean,
+  @Named("feature.disableYourEmploymentIncomeChartAndroid")        disableYourEmploymentIncomeChartAndroid:  Boolean,
+  @Named("feature.disableYourEmploymentIncomeChartIos")            disableYourEmploymentIncomeChartIos:      Boolean,
+  @Named("feature.findMyNinoAddToGoogleWallet")                     findMyNinoAddToGoogleWallet:               Boolean) {
 
-  private val featureFlags: List[FeatureFlag] = List.empty
+  private val featureFlags: List[FeatureFlag] = List(
+    FeatureFlag("userPanelSignUp",userPanelSignUp),
+    FeatureFlag("enablePushNotificationTokenRegistration",enablePushNotificationTokenRegistration),
+    FeatureFlag("paperlessAlertDialogs",paperlessAlertDialogs),
+    FeatureFlag("paperlessAdverts",paperlessAdverts),
+    FeatureFlag("htsAdverts",htsAdverts),
+    FeatureFlag("customerSatisfactionSurveys",customerSatisfactionSurveys),
+    FeatureFlag("findMyNinoAddToWallet",findMyNinoAddToWallet),
+    FeatureFlag("disableYourEmploymentIncomeChart",disableYourEmploymentIncomeChart),
+    FeatureFlag("disableYourEmploymentIncomeChartAndroid",disableYourEmploymentIncomeChartAndroid),
+    FeatureFlag("disableYourEmploymentIncomeChartIos",disableYourEmploymentIncomeChartIos),
+    FeatureFlag("findMyNinoAddToGoogleWallet",findMyNinoAddToGoogleWallet)
+  )
 
   private val urls: Urls =
     Urls(manageGovGatewayIdUrl)
