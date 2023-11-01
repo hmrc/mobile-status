@@ -1,7 +1,6 @@
 import play.sbt.PlayImport.PlayKeys.playDefaultPort
 import sbt.Keys.testGrouping
 import sbt.Tests.{Group, SubProcess}
-import uk.gov.hmrc.sbtdistributables.SbtDistributablesPlugin.publishingSettings
 
 val appName = "mobile-status"
 
@@ -36,7 +35,6 @@ lazy val microservice = Project(appName, file("."))
       "-Wconf:src=routes/.*:s"
     )
   )
-  .settings(publishingSettings: _*)
   .settings(
     routesImport ++=
       Seq("uk.gov.hmrc.mobilestatus.domain.types._", "uk.gov.hmrc.mobilestatus.domain.types.ModelTypes._")
