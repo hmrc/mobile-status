@@ -35,6 +35,17 @@ class GuiceModule(
 
     bindConfigString("url.manageGovGatewayIdUrl")
     bindConfigBoolean("shuttering.appShuttered")
+    bindConfigBoolean("feature.userPanelSignUp")
+    bindConfigBoolean("feature.enablePushNotificationTokenRegistration")
+    bindConfigBoolean("feature.paperlessAlertDialogs")
+    bindConfigBoolean("feature.paperlessAdverts")
+    bindConfigBoolean("feature.htsAdverts")
+    bindConfigBoolean("feature.customerSatisfactionSurveys")
+    bindConfigBoolean("feature.findMyNinoAddToWallet")
+    bindConfigBoolean("feature.disableYourEmploymentIncomeChart")
+    bindConfigBoolean("feature.disableYourEmploymentIncomeChartAndroid")
+    bindConfigBoolean("feature.disableYourEmploymentIncomeChartIos")
+    bindConfigBoolean("feature.findMyNinoAddToGoogleWallet")
   }
 
   private def bindConfigBoolean(path: String): Unit =
