@@ -46,7 +46,8 @@ class BaseISpec
       "feature.disableYourEmploymentIncomeChart"        -> true,
       "feature.disableYourEmploymentIncomeChartAndroid" -> true,
       "feature.disableYourEmploymentIncomeChartIos"     -> true,
-      "feature.findMyNinoAddToGoogleWallet"              -> false
+      "feature.findMyNinoAddToGoogleWallet"              -> false,
+      "clientId"                                        -> "AppClientId"
     )
 
   protected def appBuilder: GuiceApplicationBuilder = new GuiceApplicationBuilder().configure(config)

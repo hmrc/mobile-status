@@ -17,6 +17,7 @@ Responds with status of mobile services/features and an optional full screen inf
   "urls": {
     "urlName": "https://www.url.com"
   },
+  "clientId" : "AppClientId",
   "fullScreenInfoMessage": {
     "id": "496dde52-4912-4af2-8b3c-33c6f8afedf9",
     "type": "Info",
