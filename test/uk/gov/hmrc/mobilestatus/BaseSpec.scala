@@ -41,5 +41,6 @@ trait BaseSpec extends AnyWordSpecLike
   implicit def appConfig: AppConfig = appInjector.instanceOf[AppConfig]
 
   val fullScreenMessage = FullScreenInfoMessage(id = "id", `type` = "type", content = Content("title"))
+  val clientId:  String        = "AppClientId"
 
 }

@@ -21,6 +21,7 @@ import play.api.libs.json.{Format, Json}
 case class StatusResponse(
   feature:               List[FeatureFlag],
   urls:                  Urls,
+  clientId:              String,
   fullScreenInfoMessage: Option[FullScreenInfoMessage] = None)
 
 object StatusResponse {

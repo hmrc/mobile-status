@@ -46,6 +46,7 @@ class GuiceModule(
     bindConfigBoolean("feature.disableYourEmploymentIncomeChartAndroid")
     bindConfigBoolean("feature.disableYourEmploymentIncomeChartIos")
     bindConfigBoolean("feature.findMyNinoAddToGoogleWallet")
+    bindConfigString("clientId")
   }
 
   private def bindConfigBoolean(path: String): Unit =

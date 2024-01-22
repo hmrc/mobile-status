@@ -56,6 +56,7 @@ class LiveMobileStatusControllerISpec extends BaseISpec {
     "urls": {
       "manageGovGatewayIdUrl": "www.url1.gov.uk"
     },
+    "clientId" : "AppClientId",
     "fullScreenInfoMessage": {
       "id": "496dde52-4912-4af2-8b3c-33c6f8afedf9",
       "type": "Info",
@@ -158,7 +159,8 @@ class MobileStatusInvalidFileNameFullScreenMessageISpec extends BaseISpec {
        } ],
   "urls" : {
     "manageGovGatewayIdUrl" : "www.url1.gov.uk"
-  }
+  },
+  "clientId" : "AppClientId"
 }""".stripMargin)
   override def config:      Map[String, Any] = super.config ++ Map[String, Any]("nameOfConfigFile" -> "INVALID_NAME")
 
@@ -173,20 +175,6 @@ class MobileStatusInvalidFileNameFullScreenMessageISpec extends BaseISpec {
 }
 
 class MobileStatusAppShutteredFullScreenMessageISpec extends BaseISpec {
-
-  val expectedJsonResponse: String = """{
-  "feature" : [ ],
-  "urls" : {
-    "manageGovGatewayIdUrl" : "www.url1.gov.uk"
-  },
-  "fullScreenInfoMessage" : {
-    "id" : "496dde52-4912-4af2-8b3c-33c6f8afedf9",
-    "type" : "Info",
-    "content" : {
-      "title" : "Some title",
-      "body" : "Some body"
-    }
-}""".stripMargin
 
   override def config: Map[String, Any] =
     super.config ++ Map[String, Any]("shuttering.appShuttered" -> true,
