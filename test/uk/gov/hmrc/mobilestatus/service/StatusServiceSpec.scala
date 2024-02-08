@@ -46,7 +46,8 @@ class StatusServiceSpec extends BaseSpec {
                                   disableYourEmploymentIncomeChartAndroid = true,
                                   disableYourEmploymentIncomeChartIos     = true,
                                   findMyNinoAddToGoogleWallet             = false,
-                                  clientId                                = clientId)
+                                  clientId                                = clientId,
+                                  "https://www.gov.uk/national-insurance-rates-letters")
 
   val expectedFeatureFlags: List[FeatureFlag] = List(
     FeatureFlag("userPanelSignUp", enabled                         = false),
@@ -64,7 +65,8 @@ class StatusServiceSpec extends BaseSpec {
 
   val expectedUrls: Urls =
     Urls(
-      "http://localhost:8264/mobile-manage-government-gateway-id-frontend/sign-in"
+      "http://localhost:8264/mobile-manage-government-gateway-id-frontend/sign-in",
+      "https://www.gov.uk/national-insurance-rates-letters"
     )
 
   "build response" should {
