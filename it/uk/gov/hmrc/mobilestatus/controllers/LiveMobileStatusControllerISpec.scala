@@ -54,8 +54,7 @@ class LiveMobileStatusControllerISpec extends BaseISpec {
       }
     ],
     "urls": {
-      "manageGovGatewayIdUrl": "www.url1.gov.uk",
-      "tcNationalInsuranceRatesLettersUrl": "www.url6.gov.uk"
+      "manageGovGatewayIdUrl": "www.url1.gov.uk"
     },
     "clientId" : "AppClientId",
     "fullScreenInfoMessage": {
@@ -159,8 +158,7 @@ class MobileStatusInvalidFileNameFullScreenMessageISpec extends BaseISpec {
          "enabled": false
        } ],
   "urls" : {
-    "manageGovGatewayIdUrl" : "www.url1.gov.uk",
-    "tcNationalInsuranceRatesLettersUrl": "www.url6.gov.uk"
+    "manageGovGatewayIdUrl" : "www.url1.gov.uk"
   },
   "clientId" : "AppClientId"
 }""".stripMargin)
