@@ -40,7 +40,7 @@ class LiveMobileStatusController @Inject() (
 
   override def parser: BodyParser[AnyContent] = cc.parsers.anyContent
 
-  def status(journeyId: JourneyId): Action[AnyContent] = Action.async {
+  def status(journeyId: JourneyId): Action[AnyContent] = Action.async { implicit request =>
     Try(statusService.buildStatusResponse()) match {
       case Success(result) => Future successful Ok(Json.toJson(result))
 

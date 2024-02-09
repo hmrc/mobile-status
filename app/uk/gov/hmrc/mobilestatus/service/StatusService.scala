@@ -34,8 +34,7 @@ class StatusService @Inject() (
   @Named("feature.disableYourEmploymentIncomeChartAndroid") disableYourEmploymentIncomeChartAndroid: Boolean,
   @Named("feature.disableYourEmploymentIncomeChartIos") disableYourEmploymentIncomeChartIos:         Boolean,
   @Named("feature.findMyNinoAddToGoogleWallet") findMyNinoAddToGoogleWallet:                           Boolean,
-  @Named("clientId") clientId:                                                                       String,
-  @Named("url.tcNationalInsuranceRatesLettersUrl") tcNationalInsuranceRatesLettersUrl:               String) {
+  @Named("clientId") clientId:                                                                       String) {
 
   private val featureFlags: List[FeatureFlag] = List(
     FeatureFlag("userPanelSignUp", userPanelSignUp),
@@ -52,7 +51,7 @@ class StatusService @Inject() (
   )
 
   private val urls: Urls =
-    Urls(manageGovGatewayIdUrl, tcNationalInsuranceRatesLettersUrl)
+    Urls(manageGovGatewayIdUrl)
 
   def buildStatusResponse(): StatusResponse = {
     val fullScreenMessage: Option[FullScreenInfoMessage] = fullScreenMessageConfigJson.readMessageConfigJson

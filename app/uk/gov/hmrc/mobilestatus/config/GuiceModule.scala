@@ -34,7 +34,6 @@ class GuiceModule(
     bind(classOf[HttpClient]).to(classOf[WSHttpImpl])
 
     bindConfigString("url.manageGovGatewayIdUrl")
-    bindConfigString("url.tcNationalInsuranceRatesLettersUrl")
     bindConfigBoolean("shuttering.appShuttered")
     bindConfigBoolean("feature.userPanelSignUp")
     bindConfigBoolean("feature.enablePushNotificationTokenRegistration")

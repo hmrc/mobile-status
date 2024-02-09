@@ -36,7 +36,6 @@ class BaseISpec
       "url.cbProofOfEntitlementUrlCy"                   -> "www.url3.gov.uk",
       "url.cbPaymentHistoryUrl"                         -> "www.url4.gov.uk",
       "url.cbPaymentHistoryUrlCy"                       -> "www.url5.gov.uk",
-      "url.tcNationalInsuranceRatesLettersUrl"          -> "www.url6.gov.uk",
       "feature.userPanelSignUp"                         -> false,
       "feature.enablePushNotificationTokenRegistration"  -> false,
       "feature.paperlessAlertDialogs"                   -> false,
