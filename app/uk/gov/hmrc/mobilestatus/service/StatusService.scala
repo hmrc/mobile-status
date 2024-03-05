@@ -34,7 +34,8 @@ class StatusService @Inject() (
   @Named("feature.disableYourEmploymentIncomeChartAndroid") disableYourEmploymentIncomeChartAndroid: Boolean,
   @Named("feature.disableYourEmploymentIncomeChartIos") disableYourEmploymentIncomeChartIos:         Boolean,
   @Named("feature.findMyNinoAddToGoogleWallet") findMyNinoAddToGoogleWallet:                           Boolean,
-  @Named("clientId") clientId:                                                                       String) {
+  @Named("clientId") clientId:                                                                       String,
+  @Named("appAuthThrottle") appAuthThrottle:                                                         Int) {
 
   private val featureFlags: List[FeatureFlag] = List(
     FeatureFlag("userPanelSignUp", userPanelSignUp),
@@ -55,7 +56,7 @@ class StatusService @Inject() (
 
   def buildStatusResponse(): StatusResponse = {
     val fullScreenMessage: Option[FullScreenInfoMessage] = fullScreenMessageConfigJson.readMessageConfigJson
-    StatusResponse(featureFlags, urls, clientId, fullScreenMessage)
+    StatusResponse(featureFlags, urls, clientId, appAuthThrottle, fullScreenMessage)
   }
 
 }
