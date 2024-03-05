@@ -27,8 +27,6 @@ class GuiceModule(
   configuration: Configuration)
     extends AbstractModule {
 
-  val servicesConfig = new ServicesConfig(configuration)
-
   override def configure(): Unit = {
     bind(classOf[CoreGet]).to(classOf[WSHttpImpl])
     bind(classOf[HttpClient]).to(classOf[WSHttpImpl])
@@ -47,6 +45,7 @@ class GuiceModule(
     bindConfigBoolean("feature.disableYourEmploymentIncomeChartIos")
     bindConfigBoolean("feature.findMyNinoAddToGoogleWallet")
     bindConfigString("clientId")
+    bindConfigInt("appAuthThrottle")
   }
 
   private def bindConfigBoolean(path: String): Unit =
@@ -54,4 +53,7 @@ class GuiceModule(
 
   private def bindConfigString(path: String): Unit =
     bindConstant().annotatedWith(named(path)).to(configuration.underlying.getString(path))
+
+  private def bindConfigInt(path: String): Unit =
+    bindConstant().annotatedWith(named(path)).to(configuration.underlying.getInt(path))
 }

@@ -45,7 +45,7 @@ class MobileStatusControllerSpec extends BaseSpec {
   "GET /status" should {
     "return 200 with valid correct response" in {
       when(service.buildStatusResponse())
-        .thenReturn(StatusResponse(featureFlagList, urls, clientId, Some(fullScreenMessage)))
+        .thenReturn(StatusResponse(featureFlagList, urls, clientId, appAuthThrottle, Some(fullScreenMessage)))
       val result = controller.status(journeyId)(fakeRequest)
       status(result)                                                                       shouldBe Status.OK
       contentAsJson(result).toString().contains(Json.toJson(featureFlagList).toString())   shouldBe true

@@ -26,13 +26,14 @@ import play.api.test.{DefaultAwaitTimeout, FakeRequest, FutureAwaits}
 import uk.gov.hmrc.mobilestatus.config.AppConfig
 import uk.gov.hmrc.mobilestatus.domain.{Content, FullScreenInfoMessage}
 
-trait BaseSpec extends AnyWordSpecLike
-  with Matchers
-  with MockitoSugar
-  with FutureAwaits
-  with DefaultAwaitTimeout
-  with OptionValues
-  with GuiceOneAppPerSuite {
+trait BaseSpec
+    extends AnyWordSpecLike
+    with Matchers
+    with MockitoSugar
+    with FutureAwaits
+    with DefaultAwaitTimeout
+    with OptionValues
+    with GuiceOneAppPerSuite {
 
   val appInjector               = app.injector
   implicit val materializer     = appInjector.instanceOf[Materializer]
@@ -41,6 +42,7 @@ trait BaseSpec extends AnyWordSpecLike
   implicit def appConfig: AppConfig = appInjector.instanceOf[AppConfig]
 
   val fullScreenMessage = FullScreenInfoMessage(id = "id", `type` = "type", content = Content("title"))
-  val clientId:  String        = "AppClientId"
+  val clientId: String = "AppClientId"
+  val appAuthThrottle = 0
 
 }
