@@ -24,17 +24,16 @@ class StatusService @Inject() (
   fullScreenMessageConfigJson:                                                                       FullScreenMessageConfigJson,
   @Named("url.manageGovGatewayIdUrl") manageGovGatewayIdUrl:                                         String,
   @Named("feature.userPanelSignUp") userPanelSignUp:                                                 Boolean,
-  @Named("feature.enablePushNotificationTokenRegistration") enablePushNotificationTokenRegistration:   Boolean,
+  @Named("feature.enablePushNotificationTokenRegistration") enablePushNotificationTokenRegistration: Boolean,
   @Named("feature.paperlessAlertDialogs") paperlessAlertDialogs:                                     Boolean,
   @Named("feature.paperlessAdverts") paperlessAdverts:                                               Boolean,
   @Named("feature.htsAdverts") htsAdverts:                                                           Boolean,
   @Named("feature.customerSatisfactionSurveys") customerSatisfactionSurveys:                         Boolean,
-  @Named("feature.findMyNinoAddToWallet") findMyNinoAddToWallet:                                       Boolean,
+  @Named("feature.findMyNinoAddToWallet") findMyNinoAddToWallet:                                     Boolean,
   @Named("feature.disableYourEmploymentIncomeChart") disableYourEmploymentIncomeChart:               Boolean,
   @Named("feature.disableYourEmploymentIncomeChartAndroid") disableYourEmploymentIncomeChartAndroid: Boolean,
   @Named("feature.disableYourEmploymentIncomeChartIos") disableYourEmploymentIncomeChartIos:         Boolean,
-  @Named("feature.findMyNinoAddToGoogleWallet") findMyNinoAddToGoogleWallet:                           Boolean,
-  @Named("clientId") clientId:                                                                       String,
+  @Named("feature.findMyNinoAddToGoogleWallet") findMyNinoAddToGoogleWallet:                         Boolean,
   @Named("appAuthThrottle") appAuthThrottle:                                                         Int) {
 
   private val featureFlags: List[FeatureFlag] = List(
@@ -56,7 +55,7 @@ class StatusService @Inject() (
 
   def buildStatusResponse(): StatusResponse = {
     val fullScreenMessage: Option[FullScreenInfoMessage] = fullScreenMessageConfigJson.readMessageConfigJson
-    StatusResponse(featureFlags, urls, clientId, appAuthThrottle, fullScreenMessage)
+    StatusResponse(featureFlags, urls, appAuthThrottle, fullScreenMessage)
   }
 
 }

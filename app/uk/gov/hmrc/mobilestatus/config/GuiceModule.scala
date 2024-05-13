@@ -20,7 +20,6 @@ import com.google.inject.AbstractModule
 import com.google.inject.name.Names.named
 import play.api.{Configuration, Environment}
 import uk.gov.hmrc.http.{CoreGet, HttpClient}
-import uk.gov.hmrc.play.bootstrap.config.ServicesConfig
 
 class GuiceModule(
   environment:   Environment,
@@ -44,7 +43,6 @@ class GuiceModule(
     bindConfigBoolean("feature.disableYourEmploymentIncomeChartAndroid")
     bindConfigBoolean("feature.disableYourEmploymentIncomeChartIos")
     bindConfigBoolean("feature.findMyNinoAddToGoogleWallet")
-    bindConfigString("clientId")
     bindConfigInt("appAuthThrottle")
   }
 

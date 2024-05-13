@@ -56,7 +56,6 @@ class LiveMobileStatusControllerISpec extends BaseISpec {
     "urls": {
       "manageGovGatewayIdUrl": "www.url1.gov.uk"
     },
-    "clientId" : "AppClientId",
     "appAuthThrottle" : 0,
     "fullScreenInfoMessage": {
       "id": "496dde52-4912-4af2-8b3c-33c6f8afedf9",
@@ -87,7 +86,7 @@ class LiveMobileStatusControllerISpec extends BaseISpec {
   "GET /status" should {
     "return valid response based on config" in {
 
-      val response = await(wsUrl("/mobile-status/status?journeyId=7f1b5289-5f4d-4150-93a3-ff02dda28375").get)
+      val response = await(wsUrl("/mobile-status/status?journeyId=7f1b5289-5f4d-4150-93a3-ff02dda28375").get())
       response.status                                             shouldBe 200
       (response.json \ "feature").as[List[FeatureFlag]].size      shouldBe 11
       (response.json \ "urls").as[Urls].manageGovGatewayIdUrl     shouldBe "www.url1.gov.uk"
@@ -96,14 +95,14 @@ class LiveMobileStatusControllerISpec extends BaseISpec {
 
     "return 400 if no journeyId supplied" in {
 
-      val response = await(wsUrl("/mobile-status/status").get)
+      val response = await(wsUrl("/mobile-status/status").get())
       println(Json.prettyPrint(response.json))
       response.status shouldBe 400
     }
 
     "return 400 if invalid journeyId supplied" in {
 
-      val response = await(wsUrl("/mobile-status/status?journeyId=invalidJourneyId").get)
+      val response = await(wsUrl("/mobile-status/status?journeyId=invalidJourneyId").get())
       println(Json.prettyPrint(response.json))
       response.status shouldBe 400
     }
@@ -161,14 +160,13 @@ class MobileStatusInvalidFileNameFullScreenMessageISpec extends BaseISpec {
   "urls" : {
     "manageGovGatewayIdUrl" : "www.url1.gov.uk"
   },
-  "clientId" : "AppClientId",
   "appAuthThrottle" : 0
 }""".stripMargin)
   override def config:      Map[String, Any] = super.config ++ Map[String, Any]("nameOfConfigFile" -> "INVALID_NAME")
 
   s"GET /status" should {
     "return valid response without a fullScreenInfoMessage" in {
-      val response = await(wsUrl("/mobile-status/status?journeyId=7f1b5289-5f4d-4150-93a3-ff02dda28375").get)
+      val response = await(wsUrl("/mobile-status/status?journeyId=7f1b5289-5f4d-4150-93a3-ff02dda28375").get())
       response.status                                        shouldBe 200
       (response.json \ "feature").as[List[FeatureFlag]].size shouldBe 11
       response.json                                          shouldBe expectedJsonResponse
@@ -185,7 +183,7 @@ class MobileStatusAppShutteredFullScreenMessageISpec extends BaseISpec {
 
   s"GET /status" should {
     "return valid response without a fullScreenInfoMessage" in {
-      val response = await(wsUrl("/mobile-status/status?journeyId=7f1b5289-5f4d-4150-93a3-ff02dda28375").get)
+      val response = await(wsUrl("/mobile-status/status?journeyId=7f1b5289-5f4d-4150-93a3-ff02dda28375").get())
       response.status                                                            shouldBe 200
       (response.json \ "feature").as[List[FeatureFlag]].size                     shouldBe 11
       (response.json \ "fullScreenInfoMessage" \ "type").as[String]              shouldBe "Shutter"
