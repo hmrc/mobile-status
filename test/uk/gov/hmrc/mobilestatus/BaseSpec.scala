@@ -22,7 +22,7 @@ import org.scalatest.matchers.should.Matchers
 import org.scalatest.wordspec.AnyWordSpecLike
 import org.scalatest.OptionValues
 import org.scalatestplus.play.guice.GuiceOneAppPerSuite
-import play.api.test.{DefaultAwaitTimeout, FakeRequest, FutureAwaits}
+import play.api.test.{DefaultAwaitTimeout, FutureAwaits}
 import uk.gov.hmrc.mobilestatus.config.AppConfig
 import uk.gov.hmrc.mobilestatus.domain.{Content, FullScreenInfoMessage}
 
@@ -42,7 +42,6 @@ trait BaseSpec
   implicit def appConfig: AppConfig = appInjector.instanceOf[AppConfig]
 
   val fullScreenMessage = FullScreenInfoMessage(id = "id", `type` = "type", content = Content("title"))
-  val clientId: String = "AppClientId"
   val appAuthThrottle = 0
 
 }

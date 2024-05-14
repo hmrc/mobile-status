@@ -47,7 +47,6 @@ class BaseISpec
       "feature.disableYourEmploymentIncomeChartAndroid" -> true,
       "feature.disableYourEmploymentIncomeChartIos"     -> true,
       "feature.findMyNinoAddToGoogleWallet"              -> false,
-      "clientId"                                        -> "AppClientId",
       "appAuthThrottle"                                 -> 0
     )
 
