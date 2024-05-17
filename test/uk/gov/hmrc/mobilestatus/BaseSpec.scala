@@ -16,7 +16,8 @@
 
 package uk.gov.hmrc.mobilestatus
 
-import akka.stream.Materializer
+import org.apache.pekko.actor.ClassicActorSystemProvider
+import org.apache.pekko.stream.{Materializer, SystemMaterializer}
 import org.mockito.MockitoSugar
 import org.scalatest.matchers.should.Matchers
 import org.scalatest.wordspec.AnyWordSpecLike
@@ -36,7 +37,7 @@ trait BaseSpec
     with GuiceOneAppPerSuite {
 
   val appInjector               = app.injector
-  implicit val materializer     = appInjector.instanceOf[Materializer]
+  implicit def matFromSystem(implicit provider: ClassicActorSystemProvider): Materializer = SystemMaterializer(provider.classicSystem).materializer
   implicit val executionContext = scala.concurrent.ExecutionContext.Implicits.global
 
   implicit def appConfig: AppConfig = appInjector.instanceOf[AppConfig]
