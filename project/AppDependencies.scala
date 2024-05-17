@@ -7,7 +7,7 @@ object AppDependencies {
 
   private val refinedVersion   = "0.11.1"
   private val scalaMockVersion = "5.1.0"
-  private val mockitoVersion   = "1.16.46"
+  private val mockitoVersion   = "1.17.31"
 
   val compile = Seq(
     "uk.gov.hmrc" %% "bootstrap-backend-play-30" % play30Bootstrap,
