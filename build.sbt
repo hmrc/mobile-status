@@ -1,6 +1,6 @@
 import play.sbt.PlayImport.PlayKeys.playDefaultPort
 import sbt.Keys.testGrouping
-import sbt.Tests.{Group, SubProcess}
+import uk.gov.hmrc.DefaultBuildSettings.oneForkedJvmPerTest
 
 val appName = "mobile-status"
 
@@ -45,8 +45,3 @@ coverageMinimumStmtTotal := 80
 coverageFailOnMinimum := true
 coverageHighlighting := true
 coverageExcludedPackages := "<empty>;com.kenshoo.play.metrics.*;.*definition.*;prod.*;testOnlyDoNotUseInAppConf.*;app.*;.*BuildInfo.*;.*Routes.*;.*javascript.*;.*Reverse.*;.*WSHttpImpl.*"
-
-def oneForkedJvmPerTest(tests: Seq[TestDefinition]) =
-  tests map { test =>
-    Group(test.name, Seq(test), SubProcess(ForkOptions().withRunJVMOptions(Vector(s"-Dtest.name=${test.name}"))))
-  }
