@@ -37,16 +37,17 @@ class BaseISpec
       "url.cbPaymentHistoryUrl"                         -> "www.url4.gov.uk",
       "url.cbPaymentHistoryUrlCy"                       -> "www.url5.gov.uk",
       "feature.userPanelSignUp"                         -> false,
-      "feature.enablePushNotificationTokenRegistration"  -> false,
+      "feature.enablePushNotificationTokenRegistration" -> false,
       "feature.paperlessAlertDialogs"                   -> false,
       "feature.paperlessAdverts"                        -> false,
       "feature.htsAdverts"                              -> false,
       "feature.customerSatisfactionSurveys"             -> false,
-      "feature.findMyNinoAddToWallet"                    -> false,
+      "feature.findMyNinoAddToWallet"                   -> false,
       "feature.disableYourEmploymentIncomeChart"        -> true,
       "feature.disableYourEmploymentIncomeChartAndroid" -> true,
       "feature.disableYourEmploymentIncomeChartIos"     -> true,
-      "feature.findMyNinoAddToGoogleWallet"              -> false,
+      "feature.findMyNinoAddToGoogleWallet"             -> false,
+      "feature.useExternalWebBrowserForIV"              -> false,
       "appAuthThrottle"                                 -> 0
     )
 

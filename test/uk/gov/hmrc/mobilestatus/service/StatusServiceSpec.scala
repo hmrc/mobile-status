@@ -46,6 +46,7 @@ class StatusServiceSpec extends BaseSpec {
                                   disableYourEmploymentIncomeChartAndroid = true,
                                   disableYourEmploymentIncomeChartIos     = true,
                                   findMyNinoAddToGoogleWallet             = false,
+                                  useExternalWebBrowserForIV              = false,
                                   appAuthThrottle                         = appAuthThrottle)
 
   val expectedFeatureFlags: List[FeatureFlag] = List(
@@ -59,7 +60,8 @@ class StatusServiceSpec extends BaseSpec {
     FeatureFlag("disableYourEmploymentIncomeChart", enabled        = true),
     FeatureFlag("disableYourEmploymentIncomeChartAndroid", enabled = true),
     FeatureFlag("disableYourEmploymentIncomeChartIos", enabled     = true),
-    FeatureFlag("findMyNinoAddToGoogleWallet", enabled             = false)
+    FeatureFlag("findMyNinoAddToGoogleWallet", enabled             = false),
+    FeatureFlag("useExternalWebBrowserForIV", enabled              = false)
   )
 
   val expectedUrls: Urls =
@@ -77,10 +79,7 @@ class StatusServiceSpec extends BaseSpec {
     "return valid status response object with full screen info message" in {
       when(mockFullScreenMessageConfig.readMessageConfigJson).thenReturn(Some(fullScreenMessage))
       val response = service.buildStatusResponse()
-      response shouldBe StatusResponse(expectedFeatureFlags,
-                                       expectedUrls,
-                                       appAuthThrottle,
-                                       Some(fullScreenMessage))
+      response shouldBe StatusResponse(expectedFeatureFlags, expectedUrls, appAuthThrottle, Some(fullScreenMessage))
     }
   }
 

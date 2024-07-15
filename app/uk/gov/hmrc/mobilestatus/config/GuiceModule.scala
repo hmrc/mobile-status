@@ -43,6 +43,7 @@ class GuiceModule(
     bindConfigBoolean("feature.disableYourEmploymentIncomeChartAndroid")
     bindConfigBoolean("feature.disableYourEmploymentIncomeChartIos")
     bindConfigBoolean("feature.findMyNinoAddToGoogleWallet")
+    bindConfigBoolean("feature.useExternalWebBrowserForIV")
     bindConfigInt("appAuthThrottle")
   }
 

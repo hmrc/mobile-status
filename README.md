@@ -10,13 +10,58 @@ Responds with status of mobile services/features and an optional full screen inf
 {
   "feature": [
     {
-      "name": "featureFlag1",
+      "name": "userPanelSignUp",
+      "enabled": false
+    },
+    {
+      "name": "enablePushNotificationTokenRegistration",
+      "enabled": false
+    },
+    {
+      "name": "paperlessAlertDialogs",
+      "enabled": false
+    },
+    {
+      "name": "paperlessAdverts",
+      "enabled": false
+    },
+    {
+      "name": "htsAdverts",
+      "enabled": false
+    },
+    {
+      "name": "customerSatisfactionSurveys",
+      "enabled": false
+    },
+    {
+      "name": "findMyNinoAddToWallet",
+      "enabled": false
+    },
+    {
+      "name": "disableYourEmploymentIncomeChart",
+      "enabled": true
+    },
+    {
+      "name": "disableYourEmploymentIncomeChartAndroid",
+      "enabled": true
+    },
+    {
+      "name": "disableYourEmploymentIncomeChartIos",
+      "enabled": true
+    },
+    {
+      "name": "findMyNinoAddToGoogleWallet",
+      "enabled": false
+    },
+    {
+      "name": "useExternalWebBrowserForIV",
       "enabled": false
     }
   ],
   "urls": {
-    "urlName": "https://www.url.com"
+    "manageGovGatewayIdUrl": "/"
   },
+  "appAuthThrottle": 0,
   "fullScreenInfoMessage": {
     "id": "496dde52-4912-4af2-8b3c-33c6f8afedf9",
     "type": "Info",
