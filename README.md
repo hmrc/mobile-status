@@ -54,7 +54,7 @@ Responds with status of mobile services/features and an optional full screen inf
       "enabled": false
     },
     {
-      "name": "useExternalWebBrowserForIV",
+      "name": "useLegacyWebViewForIv",
       "enabled": false
     }
   ],

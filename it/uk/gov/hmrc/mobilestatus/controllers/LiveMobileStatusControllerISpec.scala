@@ -53,7 +53,7 @@ class LiveMobileStatusControllerISpec extends BaseISpec {
         "enabled": false
       },
        {
-         "name": "useExternalWebBrowserForIV",
+         "name": "useLegacyWebViewForIv",
          "enabled": false
        }
     ],
@@ -162,7 +162,7 @@ class MobileStatusInvalidFileNameFullScreenMessageISpec extends BaseISpec {
          "enabled": false
        },
        {
-         "name": "useExternalWebBrowserForIV",
+         "name": "useLegacyWebViewForIv",
          "enabled": false
        } ],
   "urls" : {
