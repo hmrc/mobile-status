@@ -34,7 +34,7 @@ class StatusService @Inject() (
   @Named("feature.disableYourEmploymentIncomeChartAndroid") disableYourEmploymentIncomeChartAndroid: Boolean,
   @Named("feature.disableYourEmploymentIncomeChartIos") disableYourEmploymentIncomeChartIos:         Boolean,
   @Named("feature.findMyNinoAddToGoogleWallet") findMyNinoAddToGoogleWallet:                         Boolean,
-  @Named("feature.useExternalWebBrowserForIV") useExternalWebBrowserForIV:                           Boolean,
+  @Named("feature.useLegacyWebViewForIv") useLegacyWebViewForIv:                                     Boolean,
   @Named("appAuthThrottle") appAuthThrottle:                                                         Int) {
 
   private val featureFlags: List[FeatureFlag] = List(
@@ -49,7 +49,7 @@ class StatusService @Inject() (
     FeatureFlag("disableYourEmploymentIncomeChartAndroid", disableYourEmploymentIncomeChartAndroid),
     FeatureFlag("disableYourEmploymentIncomeChartIos", disableYourEmploymentIncomeChartIos),
     FeatureFlag("findMyNinoAddToGoogleWallet", findMyNinoAddToGoogleWallet),
-    FeatureFlag("useExternalWebBrowserForIV", useExternalWebBrowserForIV)
+    FeatureFlag("useLegacyWebViewForIv", useLegacyWebViewForIv)
   )
 
   private val urls: Urls =

@@ -46,7 +46,7 @@ class StatusServiceSpec extends BaseSpec {
                                   disableYourEmploymentIncomeChartAndroid = true,
                                   disableYourEmploymentIncomeChartIos     = true,
                                   findMyNinoAddToGoogleWallet             = false,
-                                  useExternalWebBrowserForIV              = false,
+                                  useLegacyWebViewForIv                   = false,
                                   appAuthThrottle                         = appAuthThrottle)
 
   val expectedFeatureFlags: List[FeatureFlag] = List(
@@ -61,7 +61,7 @@ class StatusServiceSpec extends BaseSpec {
     FeatureFlag("disableYourEmploymentIncomeChartAndroid", enabled = true),
     FeatureFlag("disableYourEmploymentIncomeChartIos", enabled     = true),
     FeatureFlag("findMyNinoAddToGoogleWallet", enabled             = false),
-    FeatureFlag("useExternalWebBrowserForIV", enabled              = false)
+    FeatureFlag("useLegacyWebViewForIv", enabled                   = false)
   )
 
   val expectedUrls: Urls =

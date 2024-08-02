@@ -47,7 +47,7 @@ class BaseISpec
       "feature.disableYourEmploymentIncomeChartAndroid" -> true,
       "feature.disableYourEmploymentIncomeChartIos"     -> true,
       "feature.findMyNinoAddToGoogleWallet"             -> false,
-      "feature.useExternalWebBrowserForIV"              -> false,
+      "feature.useLegacyWebViewForIv"                   -> false,
       "appAuthThrottle"                                 -> 0
     )
 
