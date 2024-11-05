@@ -19,7 +19,6 @@ package uk.gov.hmrc.mobilestatus.config
 import com.google.inject.AbstractModule
 import com.google.inject.name.Names.named
 import play.api.{Configuration, Environment}
-import uk.gov.hmrc.http.{CoreGet, HttpClient}
 
 class GuiceModule(
   environment:   Environment,
@@ -27,9 +26,6 @@ class GuiceModule(
     extends AbstractModule {
 
   override def configure(): Unit = {
-    bind(classOf[CoreGet]).to(classOf[WSHttpImpl])
-    bind(classOf[HttpClient]).to(classOf[WSHttpImpl])
-
     bindConfigString("url.manageGovGatewayIdUrl")
     bindConfigBoolean("shuttering.appShuttered")
     bindConfigBoolean("feature.userPanelSignUp")

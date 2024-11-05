@@ -20,9 +20,7 @@ lazy val microservice = Project(appName, file("."))
     IntegrationTest / unmanagedSourceDirectories := (IntegrationTest / baseDirectory)(base =>
       Seq(base / "it", base / "test-common")
     ).value,
-    IntegrationTest / testGrouping := oneForkedJvmPerTest(
-      (IntegrationTest / definedTests).value
-    ),
+    IntegrationTest / parallelExecution := false,
     scalacOptions ++= Seq(
       "-deprecation",
       "-encoding",
@@ -36,7 +34,7 @@ lazy val microservice = Project(appName, file("."))
   )
   .settings(
     routesImport ++=
-      Seq("uk.gov.hmrc.mobilestatus.domain.types._", "uk.gov.hmrc.mobilestatus.domain.types.ModelTypes._")
+    Seq("uk.gov.hmrc.mobilestatus.domain.types._", "uk.gov.hmrc.mobilestatus.domain.types.ModelTypes._")
   )
   .settings(resolvers += Resolver.jcenterRepo)
 
