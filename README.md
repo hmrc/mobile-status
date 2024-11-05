@@ -1,5 +1,12 @@
 # mobile-status
 
+##  Service Manager Profiles
+The service can be run locally from Service Manager, using the following profiles:
+
+| Profile Details | Command                     |
+|---------------|:----------------------------|
+| MOBILE_STATUS | sm2 --start MOBILE_STATUS   |
+
 
 ## Run Tests
 - Run Unit Tests:  `sbt test`

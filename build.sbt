@@ -1,6 +1,5 @@
 import play.sbt.PlayImport.PlayKeys.playDefaultPort
 import sbt.Keys.testGrouping
-import uk.gov.hmrc.DefaultBuildSettings.oneForkedJvmPerTest
 
 val appName = "mobile-status"
 
