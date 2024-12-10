@@ -34,7 +34,7 @@ class StatusServiceSpec extends BaseSpec {
   val mockFullScreenMessageConfig: FullScreenMessageConfigJson = mock[FullScreenMessageConfigJson]
 
   val service = new StatusService(mockFullScreenMessageConfig,
-                                  "http://localhost:8264/mobile-manage-government-gateway-id-frontend/sign-in",
+                                  "http://localhost:8264/mobile-manage-sign-in-details-frontend/sign-in",
                                   userPanelSignUp                         = false,
                                   enablePushNotificationTokenRegistration = false,
                                   paperlessAlertDialogs                   = false,
@@ -66,7 +66,7 @@ class StatusServiceSpec extends BaseSpec {
 
   val expectedUrls: Urls =
     Urls(
-      "http://localhost:8264/mobile-manage-government-gateway-id-frontend/sign-in"
+      "http://localhost:8264/mobile-manage-sign-in-details-frontend/sign-in"
     )
 
   "build response" should {
