@@ -5,7 +5,24 @@
     "title": "Some title",
     "body": "Some body"
   },
+  "contentCy": {
+    "title": "Some title",
+    "body": "Some body"
+  },
   "links": [
+    {
+      "url": "https://www.abc.com",
+      "urlType": "Normal",
+      "type": "Secondary",
+      "message": "Title 1"
+    },
+    {
+      "urlType": "Dismiss",
+      "type": "Primary",
+      "message": "Title 2"
+    }
+  ],
+  "linksCy": [
     {
       "url": "https://www.abc.com",
       "urlType": "Normal",

@@ -68,6 +68,10 @@ class LiveMobileStatusControllerISpec extends BaseISpec {
         "title": "Some title",
         "body": "Some body"
       },
+      "contentCy": {
+        "title": "Some title Cy",
+        "body": "Some body Cy"
+      },
       "links": [
         {
           "url": "https://www.abc.com",
@@ -80,7 +84,20 @@ class LiveMobileStatusControllerISpec extends BaseISpec {
           "type": "Primary",
           "message": "Title 2"
         }
-      ]
+      ],
+      "linksCy": [
+       {
+          "url": "https://www.abcCy.com",
+          "urlType": "Normal",
+          "type": "Secondary",
+          "message": "Title Cy 1"
+        },
+        {
+          "urlType": "Dismiss",
+          "type": "Primary",
+          "message": "Title Cy 2"
+        }
+       ]
     }
   }""".stripMargin)
 
@@ -91,10 +108,11 @@ class LiveMobileStatusControllerISpec extends BaseISpec {
     "return valid response based on config" in {
 
       val response = await(wsUrl("/mobile-status/status?journeyId=7f1b5289-5f4d-4150-93a3-ff02dda28375").get())
-      response.status                                             shouldBe 200
-      (response.json \ "feature").as[List[FeatureFlag]].size      shouldBe 12
-      (response.json \ "urls").as[Urls].manageGovGatewayIdUrl     shouldBe "www.url1.gov.uk"
-      response.json                                               shouldBe expectedJsonResponse
+
+      response.status                                         shouldBe 200
+      (response.json \ "feature").as[List[FeatureFlag]].size  shouldBe 12
+      (response.json \ "urls").as[Urls].manageGovGatewayIdUrl shouldBe "www.url1.gov.uk"
+      response.json                                           shouldBe expectedJsonResponse
     }
 
     "return 400 if no journeyId supplied" in {
@@ -115,7 +133,7 @@ class LiveMobileStatusControllerISpec extends BaseISpec {
 
 class MobileStatusInvalidFileNameFullScreenMessageISpec extends BaseISpec {
 
-  val expectedJsonResponse: JsValue = Json.parse("""{
+  val expectedJsonResponse: JsValue          = Json.parse("""{
   "feature" : [
       {
          "name": "userPanelSignUp",

@@ -32,6 +32,10 @@ class AppConfig @Inject() (config: Configuration) {
 
   def shutterBody: Option[String] = configBase64String("shuttering.message")
 
+  def shutterTitleCy: Option[String] = configBase64String("shuttering.titleCy")
+
+  def shutterBodyCy: Option[String] = configBase64String("shuttering.messageCy")
+
   def configBase64String(path: String): Option[String] = {
     val encoded = config.underlying.getString(path)
     if (encoded.isEmpty) None else Some(Base64.decode(encoded))

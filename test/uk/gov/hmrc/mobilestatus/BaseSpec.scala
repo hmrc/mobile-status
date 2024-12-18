@@ -36,13 +36,20 @@ trait BaseSpec
     with OptionValues
     with GuiceOneAppPerSuite {
 
-  val appInjector               = app.injector
-  implicit def matFromSystem(implicit provider: ClassicActorSystemProvider): Materializer = SystemMaterializer(provider.classicSystem).materializer
+  val appInjector = app.injector
+
+  implicit def matFromSystem(implicit provider: ClassicActorSystemProvider): Materializer =
+    SystemMaterializer(provider.classicSystem).materializer
   implicit val executionContext = scala.concurrent.ExecutionContext.Implicits.global
 
   implicit def appConfig: AppConfig = appInjector.instanceOf[AppConfig]
 
   val fullScreenMessage = FullScreenInfoMessage(id = "id", `type` = "type", content = Content("title"))
+
+  val fullScreenMessageWelsh = FullScreenInfoMessage(id = "id",
+                                                     `type`    = "type",
+                                                     content   = Content("title"),
+                                                     contentCy = Some(Content("title welsh")))
   val appAuthThrottle = 0
 
 }
