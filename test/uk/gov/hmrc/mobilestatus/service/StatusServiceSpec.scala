@@ -81,6 +81,12 @@ class StatusServiceSpec extends BaseSpec {
       val response = service.buildStatusResponse()
       response shouldBe StatusResponse(expectedFeatureFlags, expectedUrls, appAuthThrottle, Some(fullScreenMessage))
     }
+
+    "return valid status response object with full screen info message with Welsh" in {
+      when(mockFullScreenMessageConfig.readMessageConfigJson).thenReturn(Some(fullScreenMessageWelsh))
+      val response = service.buildStatusResponse()
+      response shouldBe StatusResponse(expectedFeatureFlags, expectedUrls, appAuthThrottle, Some(fullScreenMessageWelsh))
+    }
   }
 
 }

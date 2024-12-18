@@ -21,18 +21,31 @@ import play.api.libs.json.{Format, JsError, JsString, JsSuccess, Json, OFormat, 
 import java.util.UUID
 
 case class FullScreenInfoMessage(
-  id:      String,
-  `type`:  String,
-  content: Content,
-  links:   Option[Seq[Link]] = None)
+  id:        String,
+  `type`:    String,
+  content:   Content,
+  contentCy: Option[Content] = None,
+  links:     Option[Seq[Link]] = None,
+  linksCy:   Option[Seq[Link]] = None)
 
 object FullScreenInfoMessage {
   implicit val formats: Format[FullScreenInfoMessage] = Json.format[FullScreenInfoMessage]
 
   def shutterApp(
-    title: String,
-    body:  Option[String]
-  ): FullScreenInfoMessage = FullScreenInfoMessage(UUID.randomUUID().toString, "Shutter", Content(title, body))
+    title:   String,
+    body:    Option[String],
+    titleCy: Option[String] = None,
+    bodyCy:  Option[String] = None
+  ): FullScreenInfoMessage = {
+    val contentCy = (titleCy, bodyCy) match {
+      case (Some(title), bodyCy) => Some(Content(title, bodyCy))
+      case _                     => None
+    }
+    FullScreenInfoMessage(id        = UUID.randomUUID().toString,
+                          `type`    = "Shutter",
+                          content   = Content(title, body),
+                          contentCy = contentCy)
+  }
 }
 
 case class Content(

@@ -5,6 +5,10 @@
     "title": "Some title",
     "body": "Some body"
   },
+  "contentCy": {
+    "title": "Some title Cy",
+    "body": "Some body Cy"
+  },
   "links": [
     {
       "url": "https://www.abc.com",
@@ -16,6 +20,20 @@
       "urlType": "Dismiss",
       "type": "Primary",
       "message": "Title 2"
+    }
+  ],
+
+  "linksCy": [
+    {
+      "url": "https://www.abcCy.com",
+      "urlType": "Normal",
+      "type": "Secondary",
+      "message": "Title Cy 1"
+    },
+    {
+      "urlType": "Dismiss",
+      "type": "Primary",
+      "message": "Title Cy 2"
     }
   ]
 }

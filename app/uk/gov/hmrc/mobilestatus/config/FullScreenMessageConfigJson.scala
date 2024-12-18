@@ -32,14 +32,19 @@ class FullScreenMessageConfigJson @Inject() (
 
   val logger: Logger = Logger(this.getClass)
 
-  def readMessageConfigJson: Option[FullScreenInfoMessage] =
-    if (appShuttered) Some(FullScreenInfoMessage.shutterApp(appConfig.shutterTitle, appConfig.shutterBody))
+  def readMessageConfigJson: Option[FullScreenInfoMessage] = {
+    if (appShuttered)
+      Some(
+        FullScreenInfoMessage
+          .shutterApp(appConfig.shutterTitle, appConfig.shutterBody, appConfig.shutterTitleCy, appConfig.shutterBodyCy)
+      )
     else
       findResource(s"/resources/mobilestatus/${appConfig.nameOfConfigFile.getOrElse("")}.json").map(
         Json
           .parse(_)
           .as[FullScreenInfoMessage]
       )
+  }
 
   def findResource(path: String): Option[String] = {
     val resource = getClass.getResourceAsStream(path)
