@@ -40,7 +40,15 @@ class GuiceModule(
     bindConfigBoolean("feature.disableYourEmploymentIncomeChartIos")
     bindConfigBoolean("feature.findMyNinoAddToGoogleWallet")
     bindConfigBoolean("feature.useLegacyWebViewForIv")
+    bindConfigBoolean("feature.enableTaxCreditShuttering")
+    bindConfigBoolean("feature.enableUniversalPensionTaxCredit")
+    bindConfigBoolean("feature.enableTaxCreditEndBanner")
+    bindConfigBoolean("feature.enableHtsBanner")
     bindConfigInt("appAuthThrottle")
+    bindConfigString("taxCreditShutterTimings.startTime")
+    bindConfigString("taxCreditShutterTimings.endTime")
+    bindConfigString("htsBannerDisplayTimings.startTime")
+    bindConfigString("htsBannerDisplayTimings.endTime")
   }
 
   private def bindConfigBoolean(path: String): Unit =

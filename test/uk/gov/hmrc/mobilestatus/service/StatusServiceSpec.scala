@@ -47,6 +47,14 @@ class StatusServiceSpec extends BaseSpec {
                                   disableYourEmploymentIncomeChartIos     = true,
                                   findMyNinoAddToGoogleWallet             = false,
                                   useLegacyWebViewForIv                   = false,
+                                  enableTaxCreditShuttering               = true,
+                                  enableUniversalPensionTaxCredit         = false,
+                                  enableTaxCreditEndBanner                = true,
+                                  enableHtsBanner                         = true,
+                                  startTime                               = "2025-03-30T11:50",
+                                  endTime                                 = "2035-03-30T11:50",
+                                  htsBannerStartTime                      = "2025-03-30T11:50",
+                                  htsBannerEndTime                        = "2035-03-30T11:50",
                                   appAuthThrottle                         = appAuthThrottle)
 
   val expectedFeatureFlags: List[FeatureFlag] = List(
@@ -61,7 +69,11 @@ class StatusServiceSpec extends BaseSpec {
     FeatureFlag("disableYourEmploymentIncomeChartAndroid", enabled = true),
     FeatureFlag("disableYourEmploymentIncomeChartIos", enabled     = true),
     FeatureFlag("findMyNinoAddToGoogleWallet", enabled             = false),
-    FeatureFlag("useLegacyWebViewForIv", enabled                   = false)
+    FeatureFlag("useLegacyWebViewForIv", enabled                   = false),
+    FeatureFlag("enableTaxCreditShuttering", enabled               = true),
+    FeatureFlag("enableUniversalPensionTaxCredit", enabled         = false),
+    FeatureFlag("enableTaxCreditEndBanner", enabled                = true),
+    FeatureFlag("enableHtsBanner", enabled                         = true)
   )
 
   val expectedUrls: Urls =
@@ -85,7 +97,10 @@ class StatusServiceSpec extends BaseSpec {
     "return valid status response object with full screen info message with Welsh" in {
       when(mockFullScreenMessageConfig.readMessageConfigJson).thenReturn(Some(fullScreenMessageWelsh))
       val response = service.buildStatusResponse()
-      response shouldBe StatusResponse(expectedFeatureFlags, expectedUrls, appAuthThrottle, Some(fullScreenMessageWelsh))
+      response shouldBe StatusResponse(expectedFeatureFlags,
+                                       expectedUrls,
+                                       appAuthThrottle,
+                                       Some(fullScreenMessageWelsh))
     }
   }
 
