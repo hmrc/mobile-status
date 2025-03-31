@@ -61,7 +61,7 @@ class LiveMobileStatusControllerISpec extends BaseISpec {
          "enabled": true
        } ,
        {
-         "name": "enableUniversalPensionTaxCredit",
+         "name": "enableUniversalPensionTaxCreditBanner",
          "enabled": false
        } ,
        {
@@ -204,7 +204,7 @@ class MobileStatusInvalidFileNameFullScreenMessageISpec extends BaseISpec {
          "enabled": true
        } ,
        {
-         "name": "enableUniversalPensionTaxCredit",
+         "name": "enableUniversalPensionTaxCreditBanner",
          "enabled": false
        } ,
        {

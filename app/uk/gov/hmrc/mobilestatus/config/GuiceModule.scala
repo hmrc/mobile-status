@@ -41,7 +41,7 @@ class GuiceModule(
     bindConfigBoolean("feature.findMyNinoAddToGoogleWallet")
     bindConfigBoolean("feature.useLegacyWebViewForIv")
     bindConfigBoolean("feature.enableTaxCreditShuttering")
-    bindConfigBoolean("feature.enableUniversalPensionTaxCredit")
+    bindConfigBoolean("feature.enableUniversalPensionTaxCreditBanner")
     bindConfigBoolean("feature.enableTaxCreditEndBanner")
     bindConfigBoolean("feature.enableHtsBanner")
     bindConfigInt("appAuthThrottle")

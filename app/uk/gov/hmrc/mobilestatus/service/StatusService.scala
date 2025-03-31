@@ -38,7 +38,7 @@ class StatusService @Inject() (
   @Named("feature.findMyNinoAddToGoogleWallet") findMyNinoAddToGoogleWallet:                         Boolean,
   @Named("feature.useLegacyWebViewForIv") useLegacyWebViewForIv:                                     Boolean,
   @Named("feature.enableTaxCreditShuttering") enableTaxCreditShuttering:                             Boolean,
-  @Named("feature.enableUniversalPensionTaxCredit") enableUniversalPensionTaxCredit:                 Boolean,
+  @Named("feature.enableUniversalPensionTaxCreditBanner") enableUniversalPensionTaxCreditBanner:                 Boolean,
   @Named("feature.enableTaxCreditEndBanner") enableTaxCreditEndBanner:                              Boolean,
   @Named("feature.enableHtsBanner") enableHtsBanner:                                       Boolean,
   @Named("taxCreditShutterTimings.startTime") startTime:                                             String,
@@ -61,7 +61,7 @@ class StatusService @Inject() (
     FeatureFlag("findMyNinoAddToGoogleWallet", findMyNinoAddToGoogleWallet),
     FeatureFlag("useLegacyWebViewForIv", useLegacyWebViewForIv),
     FeatureFlag("enableTaxCreditShuttering", isTaxCreditFlagEnabled),
-    FeatureFlag("enableUniversalPensionTaxCredit", isUniversalPensionScreenEnabled),
+    FeatureFlag("enableUniversalPensionTaxCreditBanner", isUniversalPensionScreenEnabled),
     FeatureFlag("enableTaxCreditEndBanner", isEnableTaxCreditEndBannerEnabled),
     FeatureFlag("enableHtsBanner", isHTSBannerEnabled)
   )

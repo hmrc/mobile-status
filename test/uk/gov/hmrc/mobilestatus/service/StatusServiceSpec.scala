@@ -48,7 +48,7 @@ class StatusServiceSpec extends BaseSpec {
                                   findMyNinoAddToGoogleWallet             = false,
                                   useLegacyWebViewForIv                   = false,
                                   enableTaxCreditShuttering               = true,
-                                  enableUniversalPensionTaxCredit         = false,
+                                  enableUniversalPensionTaxCreditBanner         = false,
                                   enableTaxCreditEndBanner                = true,
                                   enableHtsBanner                         = true,
                                   startTime                               = "2025-03-30T11:50",
@@ -71,7 +71,7 @@ class StatusServiceSpec extends BaseSpec {
     FeatureFlag("findMyNinoAddToGoogleWallet", enabled             = false),
     FeatureFlag("useLegacyWebViewForIv", enabled                   = false),
     FeatureFlag("enableTaxCreditShuttering", enabled               = true),
-    FeatureFlag("enableUniversalPensionTaxCredit", enabled         = false),
+    FeatureFlag("enableUniversalPensionTaxCreditBanner", enabled         = false),
     FeatureFlag("enableTaxCreditEndBanner", enabled                = true),
     FeatureFlag("enableHtsBanner", enabled                         = true)
   )
