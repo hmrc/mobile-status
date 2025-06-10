@@ -6,7 +6,6 @@ val appName = "mobile-status"
 lazy val microservice = Project(appName, file("."))
   .enablePlugins(
     play.sbt.PlayScala,
-    SbtAutoBuildPlugin,
     SbtDistributablesPlugin
   )
   .configs(IntegrationTest)
