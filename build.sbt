@@ -13,7 +13,6 @@ lazy val microservice = Project(appName, file("."))
   .settings(
     majorVersion := 0,
     scalaVersion := "3.6.4",
-    ThisBuild / crossScalaVersions ++= Seq("2.13.12", "3.6.4"),
     playDefaultPort := 8260,
     libraryDependencies ++= AppDependencies(),
     IntegrationTest / unmanagedSourceDirectories := (IntegrationTest / baseDirectory)(base =>
