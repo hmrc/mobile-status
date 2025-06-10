@@ -16,22 +16,25 @@
 
 package uk.gov.hmrc.mobilestatus.controllers
 
-import play.api.test.Helpers._
-import eu.timepit.refined.auto._
+import play.api.test.Helpers.*
+import eu.timepit.refined.auto.*
+import org.mockito.Mockito.when
+import org.scalatestplus.mockito.MockitoSugar
 import play.api.http.Status
 import play.api.libs.json.Json
 import play.api.test.{FakeRequest, Helpers}
 import uk.gov.hmrc.mobilestatus.BaseSpec
+import uk.gov.hmrc.mobilestatus.domain.types.JourneyId
 import uk.gov.hmrc.mobilestatus.domain.{FeatureFlag, StatusResponse, Urls}
-import uk.gov.hmrc.mobilestatus.domain.types.ModelTypes.JourneyId
 import uk.gov.hmrc.mobilestatus.service.StatusService
 
 class MobileStatusControllerSpec extends BaseSpec {
 
   private val fakeRequest = FakeRequest("GET", "/")
 
-  val service:   StatusService = mock[StatusService]
-  val journeyId: JourneyId     = "252a1a16-831b-46bd-bf51-4e55d4d1c088"
+  val service: StatusService = mock[StatusService]
+  val id        = "252a1a16-831b-46bd-bf51-4e55d4d1c088"
+  val journeyId = JourneyId.from(id).toOption.get
 
   private val controller = new LiveMobileStatusController(Helpers.stubControllerComponents(), service)
 
