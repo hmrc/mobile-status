@@ -19,9 +19,9 @@ package uk.gov.hmrc.mobilestatus.controllers
 import javax.inject.{Inject, Singleton}
 import play.api.Logger
 import play.api.libs.json.Json
-import play.api.mvc._
+import play.api.mvc.*
 import uk.gov.hmrc.api.controllers.{ErrorInternalServerError, ErrorResponse, HeaderValidator}
-import uk.gov.hmrc.mobilestatus.domain.types.ModelTypes.JourneyId
+import uk.gov.hmrc.mobilestatus.domain.types.JourneyId
 import uk.gov.hmrc.mobilestatus.service.StatusService
 import uk.gov.hmrc.play.bootstrap.backend.controller.BackendController
 

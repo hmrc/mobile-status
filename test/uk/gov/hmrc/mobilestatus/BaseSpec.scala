@@ -18,29 +18,31 @@ package uk.gov.hmrc.mobilestatus
 
 import org.apache.pekko.actor.ClassicActorSystemProvider
 import org.apache.pekko.stream.{Materializer, SystemMaterializer}
-import org.mockito.MockitoSugar
 import org.scalatest.matchers.should.Matchers
 import org.scalatest.wordspec.AnyWordSpecLike
 import org.scalatest.OptionValues
+import org.scalatestplus.mockito.MockitoSugar
 import org.scalatestplus.play.guice.GuiceOneAppPerSuite
 import play.api.test.{DefaultAwaitTimeout, FutureAwaits}
 import uk.gov.hmrc.mobilestatus.config.AppConfig
 import uk.gov.hmrc.mobilestatus.domain.{Content, FullScreenInfoMessage}
 
+import scala.concurrent.ExecutionContext
+
 trait BaseSpec
     extends AnyWordSpecLike
     with Matchers
-    with MockitoSugar
     with FutureAwaits
     with DefaultAwaitTimeout
     with OptionValues
+    with MockitoSugar
     with GuiceOneAppPerSuite {
 
   val appInjector = app.injector
 
   implicit def matFromSystem(implicit provider: ClassicActorSystemProvider): Materializer =
     SystemMaterializer(provider.classicSystem).materializer
-  implicit val executionContext = scala.concurrent.ExecutionContext.Implicits.global
+  implicit val executionContext: ExecutionContext = scala.concurrent.ExecutionContext.Implicits.global
 
   implicit def appConfig: AppConfig = appInjector.instanceOf[AppConfig]
 

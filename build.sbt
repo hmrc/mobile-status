@@ -6,16 +6,15 @@ val appName = "mobile-status"
 lazy val microservice = Project(appName, file("."))
   .enablePlugins(
     play.sbt.PlayScala,
-    SbtAutoBuildPlugin,
     SbtDistributablesPlugin
   )
   .configs(IntegrationTest)
   .settings(inConfig(IntegrationTest)(Defaults.itSettings): _*)
   .settings(
     majorVersion := 0,
-    scalaVersion := "2.13.12",
+    scalaVersion := "3.6.4",
     playDefaultPort := 8260,
-    libraryDependencies ++= AppDependencies.compile ++ AppDependencies.test,
+    libraryDependencies ++= AppDependencies(),
     IntegrationTest / unmanagedSourceDirectories := (IntegrationTest / baseDirectory)(base =>
       Seq(base / "it", base / "test-common")
     ).value,
@@ -33,9 +32,8 @@ lazy val microservice = Project(appName, file("."))
   )
   .settings(
     routesImport ++=
-    Seq("uk.gov.hmrc.mobilestatus.domain.types._", "uk.gov.hmrc.mobilestatus.domain.types.ModelTypes._")
+    Seq("uk.gov.hmrc.mobilestatus.domain.types._", "uk.gov.hmrc.mobilestatus.domain.types.JourneyId._")
   )
-  .settings(resolvers += Resolver.jcenterRepo)
 
 // Coverage configuration
 coverageMinimumStmtTotal := 80

@@ -16,6 +16,7 @@
 
 package uk.gov.hmrc.mobilestatus.service
 
+import org.mockito.Mockito.when
 import play.api.Application
 import play.api.inject.guice.GuiceApplicationBuilder
 import uk.gov.hmrc.mobilestatus.BaseSpec
