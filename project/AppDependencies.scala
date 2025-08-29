@@ -10,7 +10,6 @@ object AppDependencies {
   private val mockitoVersion   = "1.17.31"
 
   val compile = Seq(
-    "uk.gov.hmrc" %% "bootstrap-backend-play-30" % play30Bootstrap,
     "uk.gov.hmrc" %% "play-hmrc-api-play-30"     % playHmrcApiVersion,
     "eu.timepit"  %% "refined"                   % refinedVersion
   )
