@@ -35,6 +35,7 @@ class StatusService @Inject() (fullScreenMessageConfigJson: FullScreenMessageCon
                                @Named("feature.findMyNinoAddToGoogleWallet") findMyNinoAddToGoogleWallet: Boolean,
                                @Named("feature.useLegacyWebViewForIv") useLegacyWebViewForIv: Boolean,
                                @Named("feature.enablePinSecurity") enablePinSecurity: Boolean,
+                               @Named("feature.enableNewCreatePINScreenFlow") enableNewCreatePINScreenFlow: Boolean,
                                @Named("appAuthThrottle") appAuthThrottle: Int
                               ) {
 
@@ -51,7 +52,8 @@ class StatusService @Inject() (fullScreenMessageConfigJson: FullScreenMessageCon
     FeatureFlag("disableYourEmploymentIncomeChartIos", disableYourEmploymentIncomeChartIos),
     FeatureFlag("findMyNinoAddToGoogleWallet", findMyNinoAddToGoogleWallet),
     FeatureFlag("useLegacyWebViewForIv", useLegacyWebViewForIv),
-    FeatureFlag("enablePinSecurity", enablePinSecurity)
+    FeatureFlag("enablePinSecurity", enablePinSecurity),
+    FeatureFlag("enableNewCreatePINScreenFlow", enableNewCreatePINScreenFlow)
   )
 
   private val urls: Urls =

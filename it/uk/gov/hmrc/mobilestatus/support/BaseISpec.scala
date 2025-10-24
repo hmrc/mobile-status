@@ -49,6 +49,7 @@ class BaseISpec
       "feature.findMyNinoAddToGoogleWallet"             -> false,
       "feature.useLegacyWebViewForIv"                   -> false,
       "feature.enablePinSecurity"                       -> false,
+      "feature.enableNewCreatePINScreenFlow"            -> false,
       "appAuthThrottle"                                 -> 0
     )
 
