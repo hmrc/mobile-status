@@ -55,6 +55,10 @@ class LiveMobileStatusControllerISpec extends BaseISpec {
        {
          "name": "useLegacyWebViewForIv",
          "enabled": false
+       },
+       {
+         "name": "enablePinSecurity",
+         "enabled": false
        }
     ],
     "urls": {
@@ -108,10 +112,10 @@ class LiveMobileStatusControllerISpec extends BaseISpec {
     "return valid response based on config" in {
 
       val response = await(wsUrl("/mobile-status/status?journeyId=7f1b5289-5f4d-4150-93a3-ff02dda28375").get())
-      response.status                                             shouldBe 200
-      (response.json \ "feature").as[List[FeatureFlag]].size      shouldBe 12
-      (response.json \ "urls").as[Urls].manageGovGatewayIdUrl     shouldBe "www.url1.gov.uk"
-      response.json                                               shouldBe expectedJsonResponse
+      response.status                                         shouldBe 200
+      (response.json \ "feature").as[List[FeatureFlag]].size  shouldBe 13
+      (response.json \ "urls").as[Urls].manageGovGatewayIdUrl shouldBe "www.url1.gov.uk"
+      response.json                                           shouldBe expectedJsonResponse
     }
 
     "return 400 if no journeyId supplied" in {
@@ -132,7 +136,7 @@ class LiveMobileStatusControllerISpec extends BaseISpec {
 
 class MobileStatusInvalidFileNameFullScreenMessageISpec extends BaseISpec {
 
-  val expectedJsonResponse: JsValue          = Json.parse("""{
+  val expectedJsonResponse: JsValue = Json.parse("""{
   "feature" : [
       {
          "name": "userPanelSignUp",
@@ -181,19 +185,23 @@ class MobileStatusInvalidFileNameFullScreenMessageISpec extends BaseISpec {
        {
          "name": "useLegacyWebViewForIv",
          "enabled": false
-       } ],
+       } ,
+       {
+         "name": "enablePinSecurity",
+         "enabled": false
+       }],
   "urls" : {
     "manageGovGatewayIdUrl" : "www.url1.gov.uk"
   },
   "appAuthThrottle" : 0
 }""".stripMargin)
-  override def config:      Map[String, Any] = super.config ++ Map[String, Any]("nameOfConfigFile" -> "INVALID_NAME")
+  override def config: Map[String, Any] = super.config ++ Map[String, Any]("nameOfConfigFile" -> "INVALID_NAME")
 
   s"GET /status" should {
     "return valid response without a fullScreenInfoMessage" in {
       val response = await(wsUrl("/mobile-status/status?journeyId=7f1b5289-5f4d-4150-93a3-ff02dda28375").get())
       response.status                                        shouldBe 200
-      (response.json \ "feature").as[List[FeatureFlag]].size shouldBe 12
+      (response.json \ "feature").as[List[FeatureFlag]].size shouldBe 13
       response.json                                          shouldBe expectedJsonResponse
     }
   }
@@ -204,13 +212,14 @@ class MobileStatusAppShutteredFullScreenMessageISpec extends BaseISpec {
   override def config: Map[String, Any] =
     super.config ++ Map[String, Any]("shuttering.appShuttered" -> true,
                                      "shuttering.title"        -> "QXBwIFVuYXZhaWxhYmxl",
-                                     "shuttering.message"      -> "UGxlYXNlIHRyeSBhZ2FpbiBsYXRlci4=")
+                                     "shuttering.message"      -> "UGxlYXNlIHRyeSBhZ2FpbiBsYXRlci4="
+                                    )
 
   s"GET /status" should {
     "return valid response without a fullScreenInfoMessage" in {
       val response = await(wsUrl("/mobile-status/status?journeyId=7f1b5289-5f4d-4150-93a3-ff02dda28375").get())
       response.status                                                            shouldBe 200
-      (response.json \ "feature").as[List[FeatureFlag]].size                     shouldBe 12
+      (response.json \ "feature").as[List[FeatureFlag]].size                     shouldBe 13
       (response.json \ "fullScreenInfoMessage" \ "type").as[String]              shouldBe "Shutter"
       (response.json \ "fullScreenInfoMessage" \ "content" \ "title").as[String] shouldBe "App Unavailable"
       (response.json \ "fullScreenInfoMessage" \ "content" \ "body").as[String]  shouldBe "Please try again later."

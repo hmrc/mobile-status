@@ -1,22 +1,22 @@
-import sbt._
+import sbt.*
 
 object AppDependencies {
 
-  private val play30Bootstrap    = "10.3.0"
+  private val play30Bootstrap = "10.3.0"
   private val playHmrcApiVersion = "8.3.0"
 
-  private val refinedVersion   = "0.11.3"
-  private val scalaMockVersion = "7.4.1"
-  private val mockitoVersion   = "1.17.31"
+  private val refinedVersion = "0.11.3"
+  private val scalaMockVersion = "7.5.0"
+  private val mockitoVersion = "1.17.31"
 
   val compile = Seq(
-    "uk.gov.hmrc" %% "play-hmrc-api-play-30"     % playHmrcApiVersion,
-    "eu.timepit"  %% "refined"                   % refinedVersion
+    "uk.gov.hmrc" %% "play-hmrc-api-play-30" % playHmrcApiVersion,
+    "eu.timepit"  %% "refined"               % refinedVersion
   )
 
   trait TestDependencies {
-    lazy val scope: String        = "test"
-    lazy val test:  Seq[ModuleID] = ???
+    lazy val scope: String = "test"
+    lazy val test: Seq[ModuleID] = ???
   }
 
   private def testCommon(scope: String) = Seq(
@@ -29,8 +29,8 @@ object AppDependencies {
       new TestDependencies {
 
         override lazy val test = testCommon(scope) ++ Seq(
-            "org.scalamock" %% "scalamock" % scalaMockVersion % scope
-          )
+          "org.scalamock" %% "scalamock" % scalaMockVersion % scope
+        )
       }.test
   }
 

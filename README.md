@@ -71,6 +71,10 @@ Responds with status of mobile services/features and an optional full screen inf
     {
       "name": "useLegacyWebViewForIv",
       "enabled": false
+    },
+    {
+      "name": "enablePinSecurity",
+      "enabled": false
     }
   ],
   "urls": {

@@ -34,21 +34,24 @@ class StatusServiceSpec extends BaseSpec {
 
   val mockFullScreenMessageConfig: FullScreenMessageConfigJson = mock[FullScreenMessageConfigJson]
 
-  val service = new StatusService(mockFullScreenMessageConfig,
-                                  "http://localhost:8264/mobile-manage-sign-in-details-frontend/sign-in",
-                                  userPanelSignUp                         = false,
-                                  enablePushNotificationTokenRegistration = false,
-                                  paperlessAlertDialogs                   = false,
-                                  paperlessAdverts                        = false,
-                                  htsAdverts                              = false,
-                                  customerSatisfactionSurveys             = false,
-                                  findMyNinoAddToWallet                   = false,
-                                  disableYourEmploymentIncomeChart        = true,
-                                  disableYourEmploymentIncomeChartAndroid = true,
-                                  disableYourEmploymentIncomeChartIos     = true,
-                                  findMyNinoAddToGoogleWallet             = false,
-                                  useLegacyWebViewForIv                   = false,
-                                  appAuthThrottle                         = appAuthThrottle)
+  val service = new StatusService(
+    mockFullScreenMessageConfig,
+    "http://localhost:8264/mobile-manage-sign-in-details-frontend/sign-in",
+    userPanelSignUp                         = false,
+    enablePushNotificationTokenRegistration = false,
+    paperlessAlertDialogs                   = false,
+    paperlessAdverts                        = false,
+    htsAdverts                              = false,
+    customerSatisfactionSurveys             = false,
+    findMyNinoAddToWallet                   = false,
+    disableYourEmploymentIncomeChart        = true,
+    disableYourEmploymentIncomeChartAndroid = true,
+    disableYourEmploymentIncomeChartIos     = true,
+    findMyNinoAddToGoogleWallet             = false,
+    useLegacyWebViewForIv                   = false,
+    enablePinSecurity                       = false,
+    appAuthThrottle                         = appAuthThrottle
+  )
 
   val expectedFeatureFlags: List[FeatureFlag] = List(
     FeatureFlag("userPanelSignUp", enabled                         = false),
@@ -62,7 +65,8 @@ class StatusServiceSpec extends BaseSpec {
     FeatureFlag("disableYourEmploymentIncomeChartAndroid", enabled = true),
     FeatureFlag("disableYourEmploymentIncomeChartIos", enabled     = true),
     FeatureFlag("findMyNinoAddToGoogleWallet", enabled             = false),
-    FeatureFlag("useLegacyWebViewForIv", enabled                   = false)
+    FeatureFlag("useLegacyWebViewForIv", enabled                   = false),
+    FeatureFlag("enablePinSecurity", enabled                       = false)
   )
 
   val expectedUrls: Urls =
@@ -86,10 +90,7 @@ class StatusServiceSpec extends BaseSpec {
     "return valid status response object with full screen info message with Welsh" in {
       when(mockFullScreenMessageConfig.readMessageConfigJson).thenReturn(Some(fullScreenMessageWelsh))
       val response = service.buildStatusResponse()
-      response shouldBe StatusResponse(expectedFeatureFlags,
-                                       expectedUrls,
-                                       appAuthThrottle,
-                                       Some(fullScreenMessageWelsh))
+      response shouldBe StatusResponse(expectedFeatureFlags, expectedUrls, appAuthThrottle, Some(fullScreenMessageWelsh))
     }
   }
 
