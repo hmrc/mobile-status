@@ -50,6 +50,7 @@ class StatusServiceSpec extends BaseSpec {
     findMyNinoAddToGoogleWallet             = false,
     useLegacyWebViewForIv                   = false,
     enablePinSecurity                       = false,
+    enableNewCreatePINScreenFlow            = false,
     appAuthThrottle                         = appAuthThrottle
   )
 
@@ -66,7 +67,8 @@ class StatusServiceSpec extends BaseSpec {
     FeatureFlag("disableYourEmploymentIncomeChartIos", enabled     = true),
     FeatureFlag("findMyNinoAddToGoogleWallet", enabled             = false),
     FeatureFlag("useLegacyWebViewForIv", enabled                   = false),
-    FeatureFlag("enablePinSecurity", enabled                       = false)
+    FeatureFlag("enablePinSecurity", enabled                       = false),
+    FeatureFlag("enableNewCreatePINScreenFlow", enabled            = false)
   )
 
   val expectedUrls: Urls =

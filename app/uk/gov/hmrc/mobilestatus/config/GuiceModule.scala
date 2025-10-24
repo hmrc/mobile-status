@@ -20,10 +20,7 @@ import com.google.inject.AbstractModule
 import com.google.inject.name.Names.named
 import play.api.{Configuration, Environment}
 
-class GuiceModule(
-  environment:   Environment,
-  configuration: Configuration)
-    extends AbstractModule {
+class GuiceModule(environment: Environment, configuration: Configuration) extends AbstractModule {
 
   override def configure(): Unit = {
     bindConfigString("url.manageGovGatewayIdUrl")
@@ -41,6 +38,7 @@ class GuiceModule(
     bindConfigBoolean("feature.findMyNinoAddToGoogleWallet")
     bindConfigBoolean("feature.useLegacyWebViewForIv")
     bindConfigBoolean("feature.enablePinSecurity")
+    bindConfigBoolean("feature.enableNewCreatePINScreenFlow")
     bindConfigInt("appAuthThrottle")
   }
 

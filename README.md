@@ -75,6 +75,10 @@ Responds with status of mobile services/features and an optional full screen inf
     {
       "name": "enablePinSecurity",
       "enabled": false
+    },
+    {
+         "name": "enableNewCreatePINScreenFlow",
+         "enabled": false
     }
   ],
   "urls": {
