@@ -40,6 +40,7 @@ class GuiceModule(
     bindConfigBoolean("feature.disableYourEmploymentIncomeChartIos")
     bindConfigBoolean("feature.findMyNinoAddToGoogleWallet")
     bindConfigBoolean("feature.useLegacyWebViewForIv")
+    bindConfigBoolean("feature.enablePinSecurity")
     bindConfigInt("appAuthThrottle")
   }
 

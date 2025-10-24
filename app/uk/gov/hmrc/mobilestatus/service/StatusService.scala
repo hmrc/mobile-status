@@ -20,22 +20,23 @@ import javax.inject.{Inject, Named}
 import uk.gov.hmrc.mobilestatus.domain.{FeatureFlag, FullScreenInfoMessage, StatusResponse, Urls}
 import uk.gov.hmrc.mobilestatus.config.FullScreenMessageConfigJson
 
-class StatusService @Inject() (
-  fullScreenMessageConfigJson:                                                                       FullScreenMessageConfigJson,
-  @Named("url.manageGovGatewayIdUrl") manageGovGatewayIdUrl:                                         String,
-  @Named("feature.userPanelSignUp") userPanelSignUp:                                                 Boolean,
-  @Named("feature.enablePushNotificationTokenRegistration") enablePushNotificationTokenRegistration: Boolean,
-  @Named("feature.paperlessAlertDialogs") paperlessAlertDialogs:                                     Boolean,
-  @Named("feature.paperlessAdverts") paperlessAdverts:                                               Boolean,
-  @Named("feature.htsAdverts") htsAdverts:                                                           Boolean,
-  @Named("feature.customerSatisfactionSurveys") customerSatisfactionSurveys:                         Boolean,
-  @Named("feature.findMyNinoAddToWallet") findMyNinoAddToWallet:                                     Boolean,
-  @Named("feature.disableYourEmploymentIncomeChart") disableYourEmploymentIncomeChart:               Boolean,
-  @Named("feature.disableYourEmploymentIncomeChartAndroid") disableYourEmploymentIncomeChartAndroid: Boolean,
-  @Named("feature.disableYourEmploymentIncomeChartIos") disableYourEmploymentIncomeChartIos:         Boolean,
-  @Named("feature.findMyNinoAddToGoogleWallet") findMyNinoAddToGoogleWallet:                         Boolean,
-  @Named("feature.useLegacyWebViewForIv") useLegacyWebViewForIv:                                     Boolean,
-  @Named("appAuthThrottle") appAuthThrottle:                                                         Int) {
+class StatusService @Inject() (fullScreenMessageConfigJson: FullScreenMessageConfigJson,
+                               @Named("url.manageGovGatewayIdUrl") manageGovGatewayIdUrl: String,
+                               @Named("feature.userPanelSignUp") userPanelSignUp: Boolean,
+                               @Named("feature.enablePushNotificationTokenRegistration") enablePushNotificationTokenRegistration: Boolean,
+                               @Named("feature.paperlessAlertDialogs") paperlessAlertDialogs: Boolean,
+                               @Named("feature.paperlessAdverts") paperlessAdverts: Boolean,
+                               @Named("feature.htsAdverts") htsAdverts: Boolean,
+                               @Named("feature.customerSatisfactionSurveys") customerSatisfactionSurveys: Boolean,
+                               @Named("feature.findMyNinoAddToWallet") findMyNinoAddToWallet: Boolean,
+                               @Named("feature.disableYourEmploymentIncomeChart") disableYourEmploymentIncomeChart: Boolean,
+                               @Named("feature.disableYourEmploymentIncomeChartAndroid") disableYourEmploymentIncomeChartAndroid: Boolean,
+                               @Named("feature.disableYourEmploymentIncomeChartIos") disableYourEmploymentIncomeChartIos: Boolean,
+                               @Named("feature.findMyNinoAddToGoogleWallet") findMyNinoAddToGoogleWallet: Boolean,
+                               @Named("feature.useLegacyWebViewForIv") useLegacyWebViewForIv: Boolean,
+                               @Named("feature.enablePinSecurity") enablePinSecurity: Boolean,
+                               @Named("appAuthThrottle") appAuthThrottle: Int
+                              ) {
 
   private val featureFlags: List[FeatureFlag] = List(
     FeatureFlag("userPanelSignUp", userPanelSignUp),
@@ -49,7 +50,8 @@ class StatusService @Inject() (
     FeatureFlag("disableYourEmploymentIncomeChartAndroid", disableYourEmploymentIncomeChartAndroid),
     FeatureFlag("disableYourEmploymentIncomeChartIos", disableYourEmploymentIncomeChartIos),
     FeatureFlag("findMyNinoAddToGoogleWallet", findMyNinoAddToGoogleWallet),
-    FeatureFlag("useLegacyWebViewForIv", useLegacyWebViewForIv)
+    FeatureFlag("useLegacyWebViewForIv", useLegacyWebViewForIv),
+    FeatureFlag("enablePinSecurity", enablePinSecurity)
   )
 
   private val urls: Urls =
