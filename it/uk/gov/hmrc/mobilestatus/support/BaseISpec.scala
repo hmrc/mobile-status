@@ -50,6 +50,7 @@ class BaseISpec
       "feature.useLegacyWebViewForIv"                   -> false,
       "feature.enablePinSecurity"                       -> false,
       "feature.enableNewCreatePINScreenFlow"            -> false,
+      "feature.enableBTAUserEnrollMessage"              -> false,
       "appAuthThrottle"                                 -> 0
     )
 

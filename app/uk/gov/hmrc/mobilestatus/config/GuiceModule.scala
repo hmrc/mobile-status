@@ -39,6 +39,7 @@ class GuiceModule(environment: Environment, configuration: Configuration) extend
     bindConfigBoolean("feature.useLegacyWebViewForIv")
     bindConfigBoolean("feature.enablePinSecurity")
     bindConfigBoolean("feature.enableNewCreatePINScreenFlow")
+    bindConfigBoolean("feature.enableBTAUserEnrollMessage")
     bindConfigInt("appAuthThrottle")
   }
 
