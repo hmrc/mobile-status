@@ -79,6 +79,10 @@ Responds with status of mobile services/features and an optional full screen inf
     {
          "name": "enableNewCreatePINScreenFlow",
          "enabled": false
+    },
+    {
+      "name": "enableBTAUserEnrollMessage",
+      "enabled": false
     }
   ],
   "urls": {
