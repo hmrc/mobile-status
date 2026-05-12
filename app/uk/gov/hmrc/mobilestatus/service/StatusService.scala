@@ -37,6 +37,7 @@ class StatusService @Inject() (fullScreenMessageConfigJson: FullScreenMessageCon
                                @Named("feature.enablePinSecurity") enablePinSecurity: Boolean,
                                @Named("feature.enableNewCreatePINScreenFlow") enableNewCreatePINScreenFlow: Boolean,
                                @Named("feature.enableBTAUserEnrollMessage") enableBTAUserEnrollMessage: Boolean,
+                               @Named("feature.enableHelpTabNavigationBar") enableHelpTabNavigationBar: Boolean,
                                @Named("appAuthThrottle") appAuthThrottle: Int
                               ) {
 
@@ -55,7 +56,8 @@ class StatusService @Inject() (fullScreenMessageConfigJson: FullScreenMessageCon
     FeatureFlag("useLegacyWebViewForIv", useLegacyWebViewForIv),
     FeatureFlag("enablePinSecurity", enablePinSecurity),
     FeatureFlag("enableNewCreatePINScreenFlow", enableNewCreatePINScreenFlow),
-    FeatureFlag("enableBTAUserEnrollMessage", enableBTAUserEnrollMessage)
+    FeatureFlag("enableBTAUserEnrollMessage", enableBTAUserEnrollMessage),
+    FeatureFlag("enableHelpTabNavigationBar", enableHelpTabNavigationBar)
   )
 
   private val urls: Urls =

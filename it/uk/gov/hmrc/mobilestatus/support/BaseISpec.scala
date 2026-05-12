@@ -51,6 +51,7 @@ class BaseISpec
       "feature.enablePinSecurity"                       -> false,
       "feature.enableNewCreatePINScreenFlow"            -> false,
       "feature.enableBTAUserEnrollMessage"              -> false,
+      "feature.enableHelpTabNavigationBar"              -> false,
       "appAuthThrottle"                                 -> 0
     )
 
