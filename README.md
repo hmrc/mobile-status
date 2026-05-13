@@ -83,6 +83,10 @@ Responds with status of mobile services/features and an optional full screen inf
     {
       "name": "enableBTAUserEnrollMessage",
       "enabled": false
+    },
+    {
+      "name": "enableHelpTabNavigationBar",
+      "enabled": false
     }
   ],
   "urls": {
