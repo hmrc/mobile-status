@@ -30,13 +30,17 @@ class StatusServiceSpec extends BaseSpec {
     .configure(
       "url.manageGovGatewayIdUrl" -> "http://localhost:8264/mobile-manage-government-gateway-id-frontend/sign-in"
     )
+    .configure(
+      "url.helpDAUrl" -> "https://www.tax.service.gov.uk/ask-hmrc/chat/hmrc-app"
+    )
     .build()
 
   val mockFullScreenMessageConfig: FullScreenMessageConfigJson = mock[FullScreenMessageConfigJson]
 
   val service = new StatusService(
-    mockFullScreenMessageConfig,
-    "http://localhost:8264/mobile-manage-sign-in-details-frontend/sign-in",
+    fullScreenMessageConfigJson             = mockFullScreenMessageConfig,
+    manageGovGatewayIdUrl                   = "http://localhost:8264/mobile-manage-sign-in-details-frontend/sign-in",
+    helpDAUrl                               = "https://www.tax.service.gov.uk/ask-hmrc/chat/hmrc-app",
     userPanelSignUp                         = false,
     enablePushNotificationTokenRegistration = false,
     paperlessAlertDialogs                   = false,
@@ -77,7 +81,8 @@ class StatusServiceSpec extends BaseSpec {
 
   val expectedUrls: Urls =
     Urls(
-      "http://localhost:8264/mobile-manage-sign-in-details-frontend/sign-in"
+      "http://localhost:8264/mobile-manage-sign-in-details-frontend/sign-in",
+      "https://www.tax.service.gov.uk/ask-hmrc/chat/hmrc-app"
     )
 
   "build response" should {

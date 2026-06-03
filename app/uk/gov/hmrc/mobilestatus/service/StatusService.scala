@@ -22,6 +22,7 @@ import uk.gov.hmrc.mobilestatus.config.FullScreenMessageConfigJson
 
 class StatusService @Inject() (fullScreenMessageConfigJson: FullScreenMessageConfigJson,
                                @Named("url.manageGovGatewayIdUrl") manageGovGatewayIdUrl: String,
+                               @Named("url.helpDAUrl") helpDAUrl: String,
                                @Named("feature.userPanelSignUp") userPanelSignUp: Boolean,
                                @Named("feature.enablePushNotificationTokenRegistration") enablePushNotificationTokenRegistration: Boolean,
                                @Named("feature.paperlessAlertDialogs") paperlessAlertDialogs: Boolean,
@@ -61,7 +62,7 @@ class StatusService @Inject() (fullScreenMessageConfigJson: FullScreenMessageCon
   )
 
   private val urls: Urls =
-    Urls(manageGovGatewayIdUrl)
+    Urls(manageGovGatewayIdUrl, helpDAUrl)
 
   def buildStatusResponse(): StatusResponse = {
     val fullScreenMessage: Option[FullScreenInfoMessage] = fullScreenMessageConfigJson.readMessageConfigJson

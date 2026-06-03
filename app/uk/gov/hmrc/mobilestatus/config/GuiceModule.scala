@@ -24,6 +24,7 @@ class GuiceModule(environment: Environment, configuration: Configuration) extend
 
   override def configure(): Unit = {
     bindConfigString("url.manageGovGatewayIdUrl")
+    bindConfigString("url.helpDAUrl")
     bindConfigBoolean("shuttering.appShuttered")
     bindConfigBoolean("feature.userPanelSignUp")
     bindConfigBoolean("feature.enablePushNotificationTokenRegistration")
