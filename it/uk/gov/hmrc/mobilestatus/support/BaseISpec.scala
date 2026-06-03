@@ -32,6 +32,7 @@ class BaseISpec
       "microservice.services.datastream.port"           -> wireMockPort,
       "auditing.consumer.baseUri.port"                  -> wireMockPort,
       "url.manageGovGatewayIdUrl"                       -> "www.url1.gov.uk",
+      "url.helpDAUrl"                                   -> "www.helpdaurl.gov.uk",
       "url.cbProofOfEntitlementUrl"                     -> "www.url2.gov.uk",
       "url.cbProofOfEntitlementUrlCy"                   -> "www.url3.gov.uk",
       "url.cbPaymentHistoryUrl"                         -> "www.url4.gov.uk",

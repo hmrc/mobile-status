@@ -74,7 +74,8 @@ class LiveMobileStatusControllerISpec extends BaseISpec {
        }
     ],
     "urls": {
-      "manageGovGatewayIdUrl": "www.url1.gov.uk"
+      "manageGovGatewayIdUrl": "www.url1.gov.uk",
+      "helpDAUrl":"www.helpdaurl.gov.uk"
     },
     "appAuthThrottle" : 0,
     "fullScreenInfoMessage": {
@@ -127,6 +128,7 @@ class LiveMobileStatusControllerISpec extends BaseISpec {
       response.status                                         shouldBe 200
       (response.json \ "feature").as[List[FeatureFlag]].size  shouldBe 16
       (response.json \ "urls").as[Urls].manageGovGatewayIdUrl shouldBe "www.url1.gov.uk"
+      (response.json \ "urls").as[Urls].helpDAUrl             shouldBe "www.helpdaurl.gov.uk"
       response.json                                           shouldBe expectedJsonResponse
     }
 
@@ -215,7 +217,8 @@ class MobileStatusInvalidFileNameFullScreenMessageISpec extends BaseISpec {
          "enabled": false
        }],
   "urls" : {
-    "manageGovGatewayIdUrl" : "www.url1.gov.uk"
+    "manageGovGatewayIdUrl" : "www.url1.gov.uk",
+    "helpDAUrl":"www.helpdaurl.gov.uk"
   },
   "appAuthThrottle" : 0
 }""".stripMargin)

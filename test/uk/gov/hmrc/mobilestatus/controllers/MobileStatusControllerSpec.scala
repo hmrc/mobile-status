@@ -33,17 +33,16 @@ class MobileStatusControllerSpec extends BaseSpec {
   private val fakeRequest = FakeRequest("GET", "/")
 
   val service: StatusService = mock[StatusService]
-  val id        = "252a1a16-831b-46bd-bf51-4e55d4d1c088"
+  val id = "252a1a16-831b-46bd-bf51-4e55d4d1c088"
   val journeyId = JourneyId.from(id).toOption.get
 
   private val controller = new LiveMobileStatusController(Helpers.stubControllerComponents(), service)
 
-  private val featureFlagList: List[FeatureFlag] = List(FeatureFlag("flag1", enabled = true),
-                                                        FeatureFlag("flag2", enabled = true),
-                                                        FeatureFlag("flag3", enabled = false))
+  private val featureFlagList: List[FeatureFlag] =
+    List(FeatureFlag("flag1", enabled = true), FeatureFlag("flag2", enabled = true), FeatureFlag("flag3", enabled = false))
 
   private val urls: Urls =
-    Urls("https://url1.com")
+    Urls("https://url1.com", "www.helpdaurl.gov.uk")
 
   "GET /status" should {
     "return 200 with valid correct response" in {
