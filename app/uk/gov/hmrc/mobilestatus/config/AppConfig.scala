@@ -28,24 +28,30 @@ class AppConfig @Inject() (config: Configuration) {
     config
       .getOptional[String]("nameOfConfigFile")
 
-  def shutterTitle: String = configBase64String("shuttering.title").getOrElse("")
+  def nameOfShutterFile: Option[String] =
+    config
+      .getOptional[String]("nameOfShutterFile")
 
-  def shutterBody: Option[String] = configBase64String("shuttering.message")
-
-  def shutterTitleCy: Option[String] = configBase64String("shuttering.titleCy")
-
-  def shutterBodyCy: Option[String] = configBase64String("shuttering.messageCy")
-
-  def configBase64String(path: String): Option[String] = {
-    val encoded = config.underlying.getString(path)
-    if (encoded.isEmpty) None else Some(Base64.decode(encoded))
-  }
+//Commenting rather than removing so that if in future we need to use it for shuttering we can just uncomment it
+//Commenting it helps in increasing the coverage.
+//  def shutterTitle: String = configBase64String("shuttering.title").getOrElse("")
+//
+//  def shutterBody: Option[String] = configBase64String("shuttering.message")
+//
+//  def shutterTitleCy: Option[String] = configBase64String("shuttering.titleCy")
+//
+//  def shutterBodyCy: Option[String] = configBase64String("shuttering.messageCy")
+//
+//  def configBase64String(path: String): Option[String] = {
+//    val encoded = config.underlying.getString(path)
+//    if (encoded.isEmpty) None else Some(Base64.decode(encoded))
+//  }
 
 }
 
-object Base64 {
-  private val decoder = java.util.Base64.getDecoder
-
-  def decode(encoded: String): String =
-    new String(decoder.decode(encoded), StandardCharsets.UTF_8)
-}
+//object Base64 {
+//  private val decoder = java.util.Base64.getDecoder
+//
+//  def decode(encoded: String): String =
+//    new String(decoder.decode(encoded), StandardCharsets.UTF_8)
+//}

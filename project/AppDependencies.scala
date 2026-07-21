@@ -2,10 +2,10 @@ import sbt.*
 
 object AppDependencies {
 
-  private val play30Bootstrap = "10.7.0"
+  private val play30Bootstrap = "10.8.0"
   private val playHmrcApiVersion = "9.0.0"
 
-  private val refinedVersion = "0.11.3"
+  private val refinedVersion = "0.11.4"
   private val scalaMockVersion = "7.5.5"
   private val mockitoVersion = "1.17.31"
 
