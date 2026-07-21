@@ -248,8 +248,8 @@ class MobileStatusAppShutteredFullScreenMessageISpec extends BaseISpec {
       response.status                                                            shouldBe 200
       (response.json \ "feature").as[List[FeatureFlag]].size                     shouldBe 16
       (response.json \ "fullScreenInfoMessage" \ "type").as[String]              shouldBe "Shutter"
-      (response.json \ "fullScreenInfoMessage" \ "content" \ "title").as[String] shouldBe "App Unavailable"
-      (response.json \ "fullScreenInfoMessage" \ "content" \ "body").as[String]  shouldBe "Please try again later."
+      (response.json \ "fullScreenInfoMessage" \ "content" \ "title").as[String] shouldBe "The HMRC app is unavailable"
+      (response.json \ "fullScreenInfoMessage" \ "content" \ "body").as[String]  shouldBe "You’ll be able to use it again shortly."
     }
   }
 }

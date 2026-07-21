@@ -30,22 +30,6 @@ case class FullScreenInfoMessage(
 
 object FullScreenInfoMessage {
   implicit val formats: Format[FullScreenInfoMessage] = Json.format[FullScreenInfoMessage]
-
-  def shutterApp(
-    title:   String,
-    body:    Option[String],
-    titleCy: Option[String] = None,
-    bodyCy:  Option[String] = None
-  ): FullScreenInfoMessage = {
-    val contentCy = (titleCy, bodyCy) match {
-      case (Some(title), bodyCy) => Some(Content(title, bodyCy))
-      case _                     => None
-    }
-    FullScreenInfoMessage(id        = UUID.randomUUID().toString,
-                          `type`    = "Shutter",
-                          content   = Content(title, body),
-                          contentCy = contentCy)
-  }
 }
 
 case class Content(

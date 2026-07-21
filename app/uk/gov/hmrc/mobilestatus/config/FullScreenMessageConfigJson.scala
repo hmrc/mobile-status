@@ -34,9 +34,10 @@ class FullScreenMessageConfigJson @Inject() (
 
   def readMessageConfigJson: Option[FullScreenInfoMessage] = {
     if (appShuttered)
-      Some(
-        FullScreenInfoMessage
-          .shutterApp(appConfig.shutterTitle, appConfig.shutterBody, appConfig.shutterTitleCy, appConfig.shutterBodyCy)
+      findResource(s"/resources/mobilestatus/${appConfig.nameOfShutterFile.getOrElse("")}.json").map(
+        Json
+          .parse(_)
+          .as[FullScreenInfoMessage]
       )
     else
       findResource(s"/resources/mobilestatus/${appConfig.nameOfConfigFile.getOrElse("")}.json").map(
