@@ -32,7 +32,7 @@ class AppConfig @Inject() (config: Configuration) {
     config
       .getOptional[String]("nameOfShutterFile")
 
-//Commenring rather than removing so that if in future we need to sue it for shuttering we can just uncomment it
+//Commenting rather than removing so that if in future we need to use it for shuttering we can just uncomment it
 //Commenting it helps in increasing the coverage.
 //  def shutterTitle: String = configBase64String("shuttering.title").getOrElse("")
 //
