@@ -22,7 +22,7 @@
     {
       "url": "https://www.gov.uk/log-in-register-hmrc-online-services",
       "urlType": "Normal",
-      "type": "Secondary",
+      "type": "Primary",
       "message": "Defnyddiwch wasanaethau ar-lein CThEF ar eich porwr gwe"
     }
   ]
