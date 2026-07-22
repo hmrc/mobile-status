@@ -6,8 +6,8 @@
     "body": "You’ll be able to use it again shortly."
   },
   "contentCy": {
-    "title": "Nid yw ap CThEF ar gael ar hyn o bryd",
-    "body": "Bydd modd i chi ei ddefnyddio eto cyn bo hir."
+    "title": "Nid yw ap CThEF ar gael",
+    "body": "Byddwch yn gallu ei ddefnyddio eto cyn bo hir."
   },
   "links": [
     {
@@ -23,7 +23,7 @@
       "url": "https://www.gov.uk/log-in-register-hmrc-online-services",
       "urlType": "Normal",
       "type": "Secondary",
-      "message": "Defnyddiwch wasanaethau ar-lein CThEF yn eich porwr gwe"
+      "message": "Defnyddiwch wasanaethau ar-lein CThEF ar eich porwr gwe"
     }
   ]
 }
