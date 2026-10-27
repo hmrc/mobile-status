@@ -90,7 +90,7 @@ Responds with status of mobile services/features and an optional full screen inf
     },
     {
       "name": "enableFirebasePerformance",
-      "enabled": false
+      "enabled": true
     }
   ],
   "urls": {
