@@ -39,7 +39,7 @@ class StatusService @Inject() (fullScreenMessageConfigJson: FullScreenMessageCon
                                @Named("feature.enableNewCreatePINScreenFlow") enableNewCreatePINScreenFlow: Boolean,
                                @Named("feature.enableBTAUserEnrollMessage") enableBTAUserEnrollMessage: Boolean,
                                @Named("feature.enableHelpTabNavigationBar") enableHelpTabNavigationBar: Boolean,
-                               @Named("feature.devEnableFirebasePerformance") devEnableFirebasePerformance: Boolean,
+                               @Named("feature.enableFirebasePerformance") enableFirebasePerformance: Boolean,
                                @Named("appAuthThrottle") appAuthThrottle: Int
                               ) {
 
@@ -60,7 +60,7 @@ class StatusService @Inject() (fullScreenMessageConfigJson: FullScreenMessageCon
     FeatureFlag("enableNewCreatePINScreenFlow", enableNewCreatePINScreenFlow),
     FeatureFlag("enableBTAUserEnrollMessage", enableBTAUserEnrollMessage),
     FeatureFlag("enableHelpTabNavigationBar", enableHelpTabNavigationBar),
-    FeatureFlag("devEnableFirebasePerformance", devEnableFirebasePerformance)
+    FeatureFlag("enableFirebasePerformance", enableFirebasePerformance)
   )
 
   private val urls: Urls =

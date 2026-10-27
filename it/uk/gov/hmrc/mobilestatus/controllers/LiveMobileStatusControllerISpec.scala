@@ -73,7 +73,7 @@ class LiveMobileStatusControllerISpec extends BaseISpec {
          "enabled": false
        },
        {
-         "name": "devEnableFirebasePerformance",
+         "name": "enableFirebasePerformance",
          "enabled": true
        }
     ],
@@ -221,7 +221,7 @@ class MobileStatusInvalidFileNameFullScreenMessageISpec extends BaseISpec {
          "enabled": false
        },
        {
-         "name": "devEnableFirebasePerformance",
+         "name": "enableFirebasePerformance",
          "enabled": true
        }],
   "urls" : {
