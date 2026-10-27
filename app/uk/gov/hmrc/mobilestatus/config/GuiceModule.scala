@@ -42,6 +42,7 @@ class GuiceModule(environment: Environment, configuration: Configuration) extend
     bindConfigBoolean("feature.enableNewCreatePINScreenFlow")
     bindConfigBoolean("feature.enableBTAUserEnrollMessage")
     bindConfigBoolean("feature.enableHelpTabNavigationBar")
+    bindConfigBoolean("feature.enableFirebasePerformance")
     bindConfigInt("appAuthThrottle")
   }
 

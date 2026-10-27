@@ -53,6 +53,7 @@ class BaseISpec
       "feature.enableNewCreatePINScreenFlow"            -> false,
       "feature.enableBTAUserEnrollMessage"              -> false,
       "feature.enableHelpTabNavigationBar"              -> false,
+      "feature.enableFirebasePerformance" -> true,
       "appAuthThrottle"                                 -> 0
     )
 

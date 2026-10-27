@@ -87,6 +87,10 @@ Responds with status of mobile services/features and an optional full screen inf
     {
       "name": "enableHelpTabNavigationBar",
       "enabled": false
+    },
+    {
+      "name": "enableFirebasePerformance",
+      "enabled": true
     }
   ],
   "urls": {
