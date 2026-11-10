@@ -91,6 +91,10 @@ Responds with status of mobile services/features and an optional full screen inf
     {
       "name": "enableFirebasePerformance",
       "enabled": true
+    },
+    {
+      "name": "enableWorkManager",
+      "enabled": true
     }
   ],
   "urls": {

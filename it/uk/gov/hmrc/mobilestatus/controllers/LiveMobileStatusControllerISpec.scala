@@ -52,30 +52,34 @@ class LiveMobileStatusControllerISpec extends BaseISpec {
         "name": "findMyNinoAddToGoogleWallet",
         "enabled": false
       },
-       {
-         "name": "useLegacyWebViewForIv",
-         "enabled": false
-       },
-       {
-         "name": "enablePinSecurity",
-         "enabled": false
-       },
-       {
-         "name": "enableNewCreatePINScreenFlow",
-         "enabled": false
-       },
-       {
-         "name": "enableBTAUserEnrollMessage",
-         "enabled": false
-       },
-       {
-         "name": "enableHelpTabNavigationBar",
-         "enabled": false
-       },
-       {
-         "name": "enableFirebasePerformance",
-         "enabled": true
-       }
+      {
+        "name": "useLegacyWebViewForIv",
+        "enabled": false
+      },
+      {
+        "name": "enablePinSecurity",
+        "enabled": false
+      },
+      {
+        "name": "enableNewCreatePINScreenFlow",
+        "enabled": false
+      },
+      {
+        "name": "enableBTAUserEnrollMessage",
+        "enabled": false
+      },
+      {
+        "name": "enableHelpTabNavigationBar",
+        "enabled": false
+      },
+      {
+        "name": "enableFirebasePerformance",
+        "enabled": true
+      },
+      {
+        "name": "enableWorkManager",
+        "enabled": false
+      }
     ],
     "urls": {
       "manageGovGatewayIdUrl": "www.url1.gov.uk",
@@ -130,7 +134,7 @@ class LiveMobileStatusControllerISpec extends BaseISpec {
 
       val response = await(wsUrl("/mobile-status/status?journeyId=7f1b5289-5f4d-4150-93a3-ff02dda28375").get())
       response.status                                         shouldBe 200
-      (response.json \ "feature").as[List[FeatureFlag]].size  shouldBe 17
+      (response.json \ "feature").as[List[FeatureFlag]].size  shouldBe 18
       (response.json \ "urls").as[Urls].manageGovGatewayIdUrl shouldBe "www.url1.gov.uk"
       (response.json \ "urls").as[Urls].helpDAUrl             shouldBe "www.helpdaurl.gov.uk"
       response.json                                           shouldBe expectedJsonResponse
@@ -223,6 +227,10 @@ class MobileStatusInvalidFileNameFullScreenMessageISpec extends BaseISpec {
        {
          "name": "enableFirebasePerformance",
          "enabled": true
+       },
+       {
+        "name": "enableWorkManager",
+        "enabled": false
        }],
   "urls" : {
     "manageGovGatewayIdUrl" : "www.url1.gov.uk",
@@ -236,7 +244,7 @@ class MobileStatusInvalidFileNameFullScreenMessageISpec extends BaseISpec {
     "return valid response without a fullScreenInfoMessage" in {
       val response = await(wsUrl("/mobile-status/status?journeyId=7f1b5289-5f4d-4150-93a3-ff02dda28375").get())
       response.status                                        shouldBe 200
-      (response.json \ "feature").as[List[FeatureFlag]].size shouldBe 17
+      (response.json \ "feature").as[List[FeatureFlag]].size shouldBe 18
       response.json                                          shouldBe expectedJsonResponse
     }
   }
@@ -254,7 +262,7 @@ class MobileStatusAppShutteredFullScreenMessageISpec extends BaseISpec {
     "return valid response without a fullScreenInfoMessage" in {
       val response = await(wsUrl("/mobile-status/status?journeyId=7f1b5289-5f4d-4150-93a3-ff02dda28375").get())
       response.status                                                            shouldBe 200
-      (response.json \ "feature").as[List[FeatureFlag]].size                     shouldBe 17
+      (response.json \ "feature").as[List[FeatureFlag]].size                     shouldBe 18
       (response.json \ "fullScreenInfoMessage" \ "type").as[String]              shouldBe "Shutter"
       (response.json \ "fullScreenInfoMessage" \ "content" \ "title").as[String] shouldBe "The HMRC app is unavailable"
       (response.json \ "fullScreenInfoMessage" \ "content" \ "body").as[String]  shouldBe "You’ll be able to use it again shortly."

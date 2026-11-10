@@ -43,6 +43,7 @@ class GuiceModule(environment: Environment, configuration: Configuration) extend
     bindConfigBoolean("feature.enableBTAUserEnrollMessage")
     bindConfigBoolean("feature.enableHelpTabNavigationBar")
     bindConfigBoolean("feature.enableFirebasePerformance")
+    bindConfigBoolean("feature.enableWorkManager")
     bindConfigInt("appAuthThrottle")
   }
 
