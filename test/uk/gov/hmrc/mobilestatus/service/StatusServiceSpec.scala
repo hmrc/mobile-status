@@ -57,7 +57,8 @@ class StatusServiceSpec extends BaseSpec {
     enableNewCreatePINScreenFlow            = false,
     enableBTAUserEnrollMessage              = false,
     enableHelpTabNavigationBar              = false,
-    enableFirebasePerformance = true,
+    enableFirebasePerformance               = true,
+    enableWorkManager                       = false,
     appAuthThrottle                         = appAuthThrottle
   )
 
@@ -78,7 +79,8 @@ class StatusServiceSpec extends BaseSpec {
     FeatureFlag("enableNewCreatePINScreenFlow", enabled            = false),
     FeatureFlag("enableBTAUserEnrollMessage", enabled              = false),
     FeatureFlag("enableHelpTabNavigationBar", enabled              = false),
-    FeatureFlag("enableFirebasePerformance", enabled              = true)
+    FeatureFlag("enableFirebasePerformance", enabled               = true),
+    FeatureFlag("enableWorkManager", enabled                       = false)
   )
 
   val expectedUrls: Urls =
