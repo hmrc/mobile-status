@@ -17,6 +17,7 @@
 package uk.gov.hmrc.mobilestatus.config
 
 import play.api.Configuration
+import uk.gov.hmrc.mobilestatus.domain.ShutteringPeriod
 
 import java.nio.charset.StandardCharsets
 import javax.inject.{Inject, Singleton}
@@ -31,6 +32,20 @@ class AppConfig @Inject() (config: Configuration) {
   def nameOfShutterFile: Option[String] =
     config
       .getOptional[String]("nameOfShutterFile")
+
+
+  def shutteringConfigs(): Seq[ShutteringPeriod] = {
+
+    if (config
+      .getOptional[String]("shuttering.startDate").isEmpty)
+      Seq.empty
+    else {
+      Seq(new  ShutteringPeriod(config.get[String]("shuttering.startDate"), config.get[String]("shuttering.endDate")))
+    
+    }
+
+  }
+
 
 //Commenting rather than removing so that if in future we need to use it for shuttering we can just uncomment it
 //Commenting it helps in increasing the coverage.
