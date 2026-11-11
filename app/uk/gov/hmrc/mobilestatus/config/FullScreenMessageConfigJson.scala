@@ -19,9 +19,10 @@ package uk.gov.hmrc.mobilestatus.config
 import com.google.inject.name.Named
 import play.api.Logger
 import play.api.libs.json.Json
-import uk.gov.hmrc.mobilestatus.domain.FullScreenInfoMessage
+import uk.gov.hmrc.mobilestatus.domain.{FullScreenInfoMessage, ShutteringPeriod}
 
 import java.io.InputStream
+import java.time.{LocalDateTime, ZoneId}
 import scala.io.Source
 import javax.inject.{Inject, Singleton}
 
@@ -33,7 +34,9 @@ class FullScreenMessageConfigJson @Inject() (
   val logger: Logger = Logger(this.getClass)
 
   def readMessageConfigJson: Option[FullScreenInfoMessage] = {
-    if (appShuttered)
+    val activeShutteringPeriods: Seq[ShutteringPeriod] = getActiveShutteringPeriods(appConfig.shutteringConfigs())
+    val isAppShuttered: Boolean = activeShutteringPeriods.nonEmpty
+    if (isAppShuttered)
       findResource(s"/resources/mobilestatus/${appConfig.nameOfShutterFile.getOrElse("")}.json").map(
         Json
           .parse(_)
@@ -45,6 +48,14 @@ class FullScreenMessageConfigJson @Inject() (
           .parse(_)
           .as[FullScreenInfoMessage]
       )
+  }
+
+  private def getActiveShutteringPeriods(shutteringPeriods: Seq[ShutteringPeriod]): Seq[ShutteringPeriod] = {
+    val currentTime: LocalDateTime = LocalDateTime.now(ZoneId.of("Europe/London"))
+    shutteringPeriods.filter { x =>
+      x.startDate.isBefore(currentTime) && x.endDate.isAfter(currentTime)
+    }
+
   }
 
   def findResource(path: String): Option[String] = {
